@@ -1,0 +1,92 @@
+---
+title: "EDA Reese"
+output: html_document
+date: "2023-11-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Load the dataset
+train_df <- read_xlsx("../data/external/pizza_training_data.xlsx")
+
+# Convert order_time to POSIXct format
+train_df$order_time <- as.POSIXct(train_df$order_time, format = "%H:%M:%S")
+train_df$order_time_hour <- as.integer(format(train_df$order_time, "%H"))
+
+# Clean up pizza_name column
+train_df$pizza_name <- gsub(" Pizza", "", train_df$pizza_name)
+train_df$pizza_name <- gsub("The ", "", train_df$pizza_name)
+
+```
+```{r}
+# Visualize the distribution of pizza sizes
+library(ggplot2)
+
+ggplot(train_df, aes(x = pizza_size)) +
+  geom_bar() +
+  labs(title = "Distribution of Pizza Sizes")
+```
+
+
+```{r}
+# Visualize sales by pizza category
+ggplot(train_df, aes(x = pizza_category, fill = pizza_size)) +
+  geom_bar(position = "stack") +
+  labs(title = "Sales by Pizza Category and Size", x = "Pizza Category", y = "Number of Pizzas") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+```{r}
+# Histogram of pizza orders over 24 hours
+ggplot(train_df, aes(x = order_time_hour)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  labs(title = "Pizza Orders over 24 hrs", x = "Time of Day", y = "Number of Pizzas Ordered")
+
+# Histogram of pizza orders over 1 year
+ggplot(train_df, aes(x = day_of_year)) +
+  geom_histogram(binwidth = 1, fill = "green", color = "black") +
+  labs(title = "Histogram of Pizza Orders over 1 Year (2015)", x = "Day of Year", y = "Frequency")
+
+# Bar chart of pizza orders by day of the week
+ggplot(train_df, aes(x = factor(day_of_week, labels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")))) +
+  geom_bar() +
+  labs(title = "Pizza Orders by Day of Week", x = "Day of Week", y = "Frequency")
+
+```
+```{r}
+# Bar chart of yearly revenue by pizza type
+library(dplyr)
+
+train_df %>%
+  group_by(pizza_name) %>%
+  summarise(total_revenue = sum(total_price)) %>%
+  arrange(desc(total_revenue)) %>%
+  ggplot(aes(x = reorder(pizza_name, total_revenue), y = total_revenue)) +
+  geom_bar(stat = "identity", fill = "orange") +
+  labs(title = "Yearly Revenue (2015) by Pizza Type", x = "Pizza Type", y = "Total Revenue ($)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```{r}
+# Scatter plot of average pizza price vs. yearly revenue
+sales <- train_df %>%
+  group_by(pizza_name) %>%
+  summarise(revenue = sum(total_price)) %>%
+  arrange(desc(revenue))
+
+pizza_price <- train_df %>%
+  group_by(pizza_name) %>%
+  summarise(avg_price = mean(unit_price))
+
+merged_sales_df <- merge(sales, pizza_price, by = "pizza_name", all.x = TRUE)
+
+ggplot(merged_sales_df, aes(x = avg_price, y = revenue)) +
+  geom_point() +
+  labs(title = "Average Pizza Price vs. Yearly Revenue (2015)", x = "Average Pizza Price ($)", y = "Total Revenue ($)") +
+  theme_minimal()
+
+```
+
