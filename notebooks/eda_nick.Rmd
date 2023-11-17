@@ -1,0 +1,33 @@
+```{r}
+#import libraries
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+```
+
+```{r}
+raw_data <- read_xlsx("../data/external/pizza_training_data.xlsx")
+head(raw_data)
+```
+```{r}
+summary(raw_data)
+```
+```{r}
+raw_data %>%
+  ggplot(aes(x = pizza_id, y = unit_price)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 4, hjust=1))
+```
+```{r}
+raw_data %>%
+  ggplot(aes(x = pizza_category, y = unit_price)) +
+  geom_point()
+```
+```{r}
+grouped_size <- raw_data %>%
+  group_by(pizza_size) %>%
+  summarise(orders = sum(quantity))
+grouped_size
+```
+
