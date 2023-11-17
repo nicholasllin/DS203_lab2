@@ -30,4 +30,17 @@ grouped_size <- raw_data %>%
   summarise(orders = sum(quantity))
 grouped_size
 ```
+```{r} 
+#splitting ingredients
+ingredient_counts <- raw_data %>%
+  separate_rows(pizza_ingredients, sep = ",") %>%
+  group_by(pizza_ingredients) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+ingredient_counts %>%
+  ggplot(aes(x = pizza_ingredients, y = count)) + 
+  geom_col()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 4, hjust=1))
+```
 
