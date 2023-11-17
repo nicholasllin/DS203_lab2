@@ -9,6 +9,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+```
+
+```{r}
 # Load the dataset
 train_df <- read_xlsx("../data/external/pizza_training_data.xlsx")
 
