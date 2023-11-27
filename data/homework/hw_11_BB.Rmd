@@ -1,0 +1,20 @@
+---
+title: "HW 11 Explanatory Models"
+author: "Nick"
+---
+
+# Question 1.1
+
+> I think that *number of assets* and the *number of breaches* are positively related, because a company with more *assets* would be more targeted by hackers. Next, I think that *number of assets* and *number of cyber security training hours* are positively related, since a company with more *assets* would likely want their employees to be trained to protect against breaches. Thus, positive times positive equals positive omitted variable bias. Since the measured coefficient of *cyber security training hours* is positive, this is bias away from zero.
+
+# Question 1.2
+
+> Reverse causality could exist where if there are more *security breaches*, there would be more amount of *cyber security training hours* assigned. This would create a positive bias in the estimate for the effect of training on breaches. With the positive measured coefficient of *cyber security training hours*, the reverse causality bias would be further away from zero.
+
+# Question 1.3
+
+> An outcome variable on the RHS of the model could be *emails encrypted* since *cyber security training hours* could cause *emails encrypted*. Because *emails encrypted* is negatively related to *security breaches*, if *emails encrypted* were removed from the model, the coefficient for *cyber security training hours* would have to move down to match the outcome of the original model.
+
+# Question 1.4
+
+> Based on the potential omitted variable bias, reverse causality, and outcome variables on the right hand side, there are clearly flaws in the current model. From background knowledge, it is expected that companies without cyber security training hours would have more breaches. Thus, if these flaws can be addressed, then the model could provide a more accurate depiction of the relationship between cyber security training and breaches, allowing the team to make a more informed decision regarding the value of cyber security training.
