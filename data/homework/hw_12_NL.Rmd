@@ -1,0 +1,97 @@
+---
+title: "HW 12 CLM"
+author: "Nick"
+---
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(patchwork)
+library(car)
+library(lmtest)
+library(sandwich)
+library(stargazer)
+```
+
+```{r}
+#read data
+data <- read.delim("videos.txt")
+
+#check for NA values in columns
+colSums(is.na(data))
+
+#clear NA data
+data <- na.omit(data)
+colSums(is.na(data))
+glimpse(data)
+```
+```{r}
+model1 <- lm(log(views) ~ rate + length, data = data)
+```
+
+
+#Question 1.1
+> To assess IID data, we need to know about the sampling process. From the Dataset for "Statistics and Social Network of YouTube Videos" documentation, the data contains 9618 observations of videos performed by a crawler extracting information from the Youtube API. Based on this, there are several reasons the data is NOT independent of each other.
+* The Youtube videos form a direct graph, where each video is a node in the graph. The edges of the graph are based on if the videos are related to each other within 20 videos. The data of the video is collected through this graph, which means that each video all has some relation to another, showing that they are NOT independent. 
+* Youtube videos that are related are likely inspired or based on similar topics which result in non-independence (clustering).
+* A particular youtuber might make videos that are similar to each other (clustering).
+* Popular videos will inspire other videomakers to make similar videos (strategic effect).
+
+
+#Question 1.2
+> To assess perfect collinearity, we can look at our coefficients, and notice that R has not dropped any variables.
+
+```{r}
+model1$coefficients
+```
+> Therefore there is no perfect colinearity. This assumption also needs the requirement that a unique BLP exists. If there are heavy tails this might not happen. Looking at the distributions of the variables below, there seems to be some heavy tails??? Therefore NO unique BLP???
+
+```{r}
+plot1 <- data %>%
+  ggplot(aes(x = rate)) +
+  geom_histogram()
+
+plot2 <- data %>%
+  ggplot(aes(x = length)) +
+  geom_histogram()
+
+plot1 | plot2
+```
+
+
+#Question 1.3
+> To assess whether there is a linear conditional expectation, we've learned to look at the predicted vs. residuals of the model.
+
+```{r}
+data <- data %>%
+  mutate(
+    model1_preds = predict(model1),
+    model1_resids = resid(model1))
+
+data %>% ggplot(aes(model1_preds, model1_resids)) +
+  geom_point() +
+  stat_smooth() 
+```
+> The graph between predictions and residuals show that there is a pretty clear non-linear relationship in this data.
+
+#Question 1.4
+> To assess if the model has homoskedastic errors, we can examine the residuals versus fitted plot from above. Based on where the majority of the data is, it seems that the distribution of errors is pretty even, only increasing in variance of the residuals at the higher predicted values. It is not severe.
+
+> We can also look at the scale-location plot. Homoskedasticity would look like a flat smoothing curve here.
+
+```{r}
+plot(model1, which = 3)
+```
+> Since the curve is flat and decently smooth, the graph suggests homoskedastic errors.
+
+#Question 1.5
+```{r}
+plot1 <- data %>%
+  ggplot(aes(x = model1_resids)) +
+  geom_histogram()
+
+plot2 <- data %>%
+  ggplot(aes(sample = model1_resids)) +
+  stat_qq() + stat_qq_line()
+
+plot1 / plot2
+```
+> The histogram of the residuals and the qqplot show signs of normally distributed errors. 
