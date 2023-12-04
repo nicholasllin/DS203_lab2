@@ -1,0 +1,66 @@
+"","ingredient","is_meat","is_sauce","is_alt_cheese","is_veggie"
+"1","Pepperoni",TRUE,FALSE,FALSE,FALSE
+"2","Mushrooms",FALSE,FALSE,FALSE,TRUE
+"3","Green Peppers",FALSE,FALSE,FALSE,TRUE
+"4","Chicken",TRUE,FALSE,FALSE,FALSE
+"5","Tomatoes",FALSE,FALSE,FALSE,TRUE
+"6","Red Peppers",FALSE,FALSE,FALSE,TRUE
+"7","Red Onions",FALSE,FALSE,FALSE,TRUE
+"8","Jalapeno Peppers",FALSE,FALSE,FALSE,TRUE
+"9","Corn",FALSE,FALSE,FALSE,TRUE
+"10","Cilantro",FALSE,FALSE,FALSE,FALSE
+"11","Chipotle Sauce",FALSE,TRUE,FALSE,FALSE
+"12","Sliced Ham",TRUE,FALSE,FALSE,FALSE
+"13","Pineapple",FALSE,FALSE,FALSE,FALSE
+"14","Mozzarella Cheese",FALSE,FALSE,FALSE,FALSE
+"15","Barbecued Chicken",TRUE,FALSE,FALSE,FALSE
+"16","Barbecue Sauce",FALSE,TRUE,FALSE,FALSE
+"17","Spinach",FALSE,FALSE,FALSE,TRUE
+"18","Artichokes",FALSE,FALSE,FALSE,TRUE
+"19","Sun-dried Tomatoes",FALSE,FALSE,FALSE,TRUE
+"20","Garlic",FALSE,FALSE,FALSE,FALSE
+"21","Pesto Sauce",FALSE,TRUE,FALSE,FALSE
+"22","Coarse Sicilian Salami",TRUE,FALSE,FALSE,FALSE
+"23","Green Olives",FALSE,FALSE,FALSE,TRUE
+"24","Luganega Sausage",TRUE,FALSE,FALSE,FALSE
+"25","Onions",FALSE,FALSE,FALSE,TRUE
+"26","Bacon",TRUE,FALSE,FALSE,FALSE
+"27","Brie Carre Cheese",FALSE,FALSE,TRUE,FALSE
+"28","Prosciutto",TRUE,FALSE,FALSE,FALSE
+"29","Caramelized Onions",FALSE,FALSE,FALSE,TRUE
+"30","Pears",FALSE,FALSE,FALSE,FALSE
+"31","Thyme",FALSE,FALSE,FALSE,FALSE
+"32","Anchovies",TRUE,FALSE,FALSE,FALSE
+"33","Zucchini",FALSE,FALSE,FALSE,TRUE
+"34","Eggplant",FALSE,FALSE,FALSE,TRUE
+"35","Calabrese Salami",TRUE,FALSE,FALSE,FALSE
+"36","Capocollo",TRUE,FALSE,FALSE,FALSE
+"37","Artichoke",FALSE,FALSE,FALSE,TRUE
+"38","Fontina Cheese",FALSE,FALSE,TRUE,FALSE
+"39","Gouda Cheese",FALSE,FALSE,TRUE,FALSE
+"40","Soppressata Salami",TRUE,FALSE,FALSE,FALSE
+"41","Feta Cheese",FALSE,FALSE,TRUE,FALSE
+"42","Kalamata Olives",FALSE,FALSE,FALSE,TRUE
+"43","Plum Tomatoes",FALSE,FALSE,FALSE,TRUE
+"44","Asiago Cheese",FALSE,FALSE,TRUE,FALSE
+"45","Alfredo Sauce",FALSE,TRUE,FALSE,FALSE
+"46","Ricotta Cheese",FALSE,FALSE,TRUE,FALSE
+"47","Gorgonzola Piccante Cheese",FALSE,FALSE,TRUE,FALSE
+"48","Parmigiano Reggiano Cheese",FALSE,FALSE,TRUE,FALSE
+"49","Genoa Salami",TRUE,FALSE,FALSE,FALSE
+"50","Beef Chuck Roast",TRUE,FALSE,FALSE,FALSE
+"51","Thai Sweet Chilli Sauce",FALSE,TRUE,FALSE,FALSE
+"52","Goat Cheese",FALSE,FALSE,TRUE,FALSE
+"53","Peperoncini verdi",FALSE,FALSE,FALSE,TRUE
+"54","Provolone Cheese",FALSE,FALSE,TRUE,FALSE
+"55","Smoked Gouda Cheese",FALSE,FALSE,TRUE,FALSE
+"56","Romano Cheese",FALSE,FALSE,TRUE,FALSE
+"57","Blue Cheese",FALSE,FALSE,TRUE,FALSE
+"58","Prosciutto di San Daniele",TRUE,FALSE,FALSE,FALSE
+"59","Arugula",FALSE,FALSE,FALSE,TRUE
+"60","Italian Sausage",TRUE,FALSE,FALSE,FALSE
+"61","Chorizo Sausage",TRUE,FALSE,FALSE,FALSE
+"62","慛duja Salami",TRUE,FALSE,FALSE,FALSE
+"63","Pancetta",TRUE,FALSE,FALSE,FALSE
+"64","Friggitello Peppers",FALSE,FALSE,FALSE,TRUE
+"65","Oregano",FALSE,FALSE,FALSE,FALSE

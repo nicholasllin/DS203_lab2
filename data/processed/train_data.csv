@@ -1,0 +1,285 @@
+"","pizza_name","month_01","month_02","month_03","month_04","month_05","month_06","month_07","month_08","month_09","month_10","month_11","month_12","total_sales","ingredeint_count","meat_count","alt_cheese_count","alt_sauce_count","veggie_count","is_vegetarian","alt_cheese","alt_sauce"
+"1","The Barbecue Chicken Pizza",1,0,0,0,0,0,0,0,0,0,0,0,3770.25,6,2,1,1,2,FALSE,TRUE,TRUE
+"2","The Barbecue Chicken Pizza",0,1,0,0,0,0,0,0,0,0,0,0,3416.75,6,2,1,1,2,FALSE,TRUE,TRUE
+"3","The Barbecue Chicken Pizza",0,0,0,1,0,0,0,0,0,0,0,0,3788.5,6,2,1,1,2,FALSE,TRUE,TRUE
+"4","The Barbecue Chicken Pizza",0,0,0,0,0,1,0,0,0,0,0,0,3377.5,6,2,1,1,2,FALSE,TRUE,TRUE
+"5","The Barbecue Chicken Pizza",0,0,0,0,0,0,1,0,0,0,0,0,3784.25,6,2,1,1,2,FALSE,TRUE,TRUE
+"6","The Barbecue Chicken Pizza",0,0,0,0,0,0,0,1,0,0,0,0,3300.25,6,2,1,1,2,FALSE,TRUE,TRUE
+"7","The Barbecue Chicken Pizza",0,0,0,0,0,0,0,0,1,0,0,0,3380,6,2,1,1,2,FALSE,TRUE,TRUE
+"8","The Barbecue Chicken Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2946,6,2,1,1,2,FALSE,TRUE,TRUE
+"9","The Barbecue Chicken Pizza",0,0,0,0,0,0,0,0,0,0,1,0,3881.75,6,2,1,1,2,FALSE,TRUE,TRUE
+"10","The Big Meat Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1800,4,1,1,1,1,FALSE,TRUE,TRUE
+"11","The Big Meat Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1668,4,1,1,1,1,FALSE,TRUE,TRUE
+"12","The Big Meat Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1668,4,1,1,1,1,FALSE,TRUE,TRUE
+"13","The Big Meat Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2220,4,1,1,1,1,FALSE,TRUE,TRUE
+"14","The Big Meat Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1812,4,1,1,1,1,FALSE,TRUE,TRUE
+"15","The Big Meat Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2088,4,1,1,1,1,FALSE,TRUE,TRUE
+"16","The Brie Carre Pizza",1,0,0,0,0,0,0,0,0,0,0,0,827.75,6,3,0,0,1,FALSE,FALSE,FALSE
+"17","The Brie Carre Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1040.6,6,3,0,0,1,FALSE,FALSE,FALSE
+"18","The Brie Carre Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1087.9,6,3,0,0,1,FALSE,FALSE,FALSE
+"19","The Brie Carre Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1087.9,6,3,0,0,1,FALSE,FALSE,FALSE
+"20","The Brie Carre Pizza",0,0,0,0,0,1,0,0,0,0,0,0,945.999999999999,6,3,0,0,1,FALSE,FALSE,FALSE
+"21","The Brie Carre Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1040.6,6,3,0,0,1,FALSE,FALSE,FALSE
+"22","The Brie Carre Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1016.95,6,3,0,0,1,FALSE,FALSE,FALSE
+"23","The Brie Carre Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1158.85,6,3,0,0,1,FALSE,FALSE,FALSE
+"24","The Brie Carre Pizza",0,0,0,0,0,0,0,0,0,0,1,0,993.299999999999,6,3,0,0,1,FALSE,FALSE,FALSE
+"25","The Brie Carre Pizza",0,0,0,0,0,0,0,0,0,0,0,1,827.75,6,3,0,0,1,FALSE,FALSE,FALSE
+"26","The Calabrese Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1156.75,6,0,1,2,2,TRUE,TRUE,TRUE
+"27","The Calabrese Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1461.5,6,0,1,2,2,TRUE,TRUE,TRUE
+"28","The Calabrese Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1108.25,6,0,1,2,2,TRUE,TRUE,TRUE
+"29","The Calabrese Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1380.75,6,0,1,2,2,TRUE,TRUE,TRUE
+"30","The Calabrese Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1526.5,6,0,1,2,2,TRUE,TRUE,TRUE
+"31","The Calabrese Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1428.75,6,0,1,2,2,TRUE,TRUE,TRUE
+"32","The Calabrese Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1262.25,6,0,1,2,2,TRUE,TRUE,TRUE
+"33","The Calabrese Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1104.5,6,0,1,2,2,TRUE,TRUE,TRUE
+"34","The Calabrese Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1372.25,6,0,1,2,2,TRUE,TRUE,TRUE
+"35","The Calabrese Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1595.5,6,0,1,2,2,TRUE,TRUE,TRUE
+"36","The Calabrese Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1144.25,6,0,1,2,2,TRUE,TRUE,TRUE
+"37","The California Chicken Pizza",1,0,0,0,0,0,0,0,0,0,0,0,3471.5,7,2,1,0,3,FALSE,TRUE,FALSE
+"38","The California Chicken Pizza",0,1,0,0,0,0,0,0,0,0,0,0,3537,7,2,1,0,3,FALSE,TRUE,FALSE
+"39","The California Chicken Pizza",0,0,1,0,0,0,0,0,0,0,0,0,3457.5,7,2,1,0,3,FALSE,TRUE,FALSE
+"40","The California Chicken Pizza",0,0,0,1,0,0,0,0,0,0,0,0,3092,7,2,1,0,3,FALSE,TRUE,FALSE
+"41","The California Chicken Pizza",0,0,0,0,1,0,0,0,0,0,0,0,3561.25,7,2,1,0,3,FALSE,TRUE,FALSE
+"42","The California Chicken Pizza",0,0,0,0,0,1,0,0,0,0,0,0,3870.5,7,2,1,0,3,FALSE,TRUE,FALSE
+"43","The California Chicken Pizza",0,0,0,0,0,0,1,0,0,0,0,0,3252.25,7,2,1,0,3,FALSE,TRUE,FALSE
+"44","The California Chicken Pizza",0,0,0,0,0,0,0,1,0,0,0,0,3977.25,7,2,1,0,3,FALSE,TRUE,FALSE
+"45","The California Chicken Pizza",0,0,0,0,0,0,0,0,1,0,0,0,3088.75,7,2,1,0,3,FALSE,TRUE,FALSE
+"46","The California Chicken Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2833.5,7,2,1,0,3,FALSE,TRUE,FALSE
+"47","The California Chicken Pizza",0,0,0,0,0,0,0,0,0,0,1,0,3692.75,7,2,1,0,3,FALSE,TRUE,FALSE
+"48","The California Chicken Pizza",0,0,0,0,0,0,0,0,0,0,0,1,3575.25,7,2,1,0,3,FALSE,TRUE,FALSE
+"49","The Chicken Alfredo Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1456.5,6,2,0,0,4,FALSE,FALSE,FALSE
+"50","The Chicken Alfredo Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1267.5,6,2,0,0,4,FALSE,FALSE,FALSE
+"51","The Chicken Alfredo Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1259.5,6,2,0,0,4,FALSE,FALSE,FALSE
+"52","The Chicken Alfredo Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1439.75,6,2,0,0,4,FALSE,FALSE,FALSE
+"53","The Chicken Alfredo Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1410.25,6,2,0,0,4,FALSE,FALSE,FALSE
+"54","The Chicken Alfredo Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1400.75,6,2,0,0,4,FALSE,FALSE,FALSE
+"55","The Chicken Alfredo Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1364,6,2,0,0,4,FALSE,FALSE,FALSE
+"56","The Chicken Alfredo Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1625.75,6,2,0,0,4,FALSE,FALSE,FALSE
+"57","The Chicken Alfredo Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1272.25,6,2,0,0,4,FALSE,FALSE,FALSE
+"58","The Chicken Pesto Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1337.75,6,2,1,1,1,FALSE,TRUE,TRUE
+"59","The Chicken Pesto Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1340.75,6,2,1,1,1,FALSE,TRUE,TRUE
+"60","The Chicken Pesto Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1339.25,6,2,1,1,1,FALSE,TRUE,TRUE
+"61","The Chicken Pesto Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1254,6,2,1,1,1,FALSE,TRUE,TRUE
+"62","The Chicken Pesto Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1373.5,6,2,1,1,1,FALSE,TRUE,TRUE
+"63","The Classic Deluxe Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2941.5,5,1,0,0,4,FALSE,FALSE,FALSE
+"64","The Classic Deluxe Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2705,5,1,0,0,4,FALSE,FALSE,FALSE
+"65","The Classic Deluxe Pizza",0,0,0,0,0,1,0,0,0,0,0,0,3029,5,1,0,0,4,FALSE,FALSE,FALSE
+"66","The Classic Deluxe Pizza",0,0,0,0,0,0,0,0,1,0,0,0,3257.5,5,1,0,0,4,FALSE,FALSE,FALSE
+"67","The Classic Deluxe Pizza",0,0,0,0,0,0,0,0,0,1,0,0,3075.5,5,1,0,0,4,FALSE,FALSE,FALSE
+"68","The Classic Deluxe Pizza",0,0,0,0,0,0,0,0,0,0,1,0,3379.5,5,1,0,0,4,FALSE,FALSE,FALSE
+"69","The Classic Deluxe Pizza",0,0,0,0,0,0,0,0,0,0,0,1,3096.5,5,1,0,0,4,FALSE,FALSE,FALSE
+"70","The Five Cheese Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2553,6,1,0,1,2,FALSE,FALSE,TRUE
+"71","The Five Cheese Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2312.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"72","The Five Cheese Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1979.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"73","The Five Cheese Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2294,6,1,0,1,2,FALSE,FALSE,TRUE
+"74","The Five Cheese Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2294,6,1,0,1,2,FALSE,FALSE,TRUE
+"75","The Five Cheese Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2571.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"76","The Five Cheese Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2090.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"77","The Five Cheese Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2127.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"78","The Five Cheese Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2016.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"79","The Four Cheese Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2671.65,5,1,2,0,1,FALSE,TRUE,FALSE
+"80","The Four Cheese Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2734.4,5,1,2,0,1,FALSE,TRUE,FALSE
+"81","The Four Cheese Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2811.35,5,1,2,0,1,FALSE,TRUE,FALSE
+"82","The Four Cheese Pizza",0,0,0,1,0,0,0,0,0,0,0,0,2744.7,5,1,2,0,1,FALSE,TRUE,FALSE
+"83","The Four Cheese Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2515.8,5,1,2,0,1,FALSE,TRUE,FALSE
+"84","The Four Cheese Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2770.3,5,1,2,0,1,FALSE,TRUE,FALSE
+"85","The Four Cheese Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2344.65,5,1,2,0,1,FALSE,TRUE,FALSE
+"86","The Four Cheese Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2870.35,5,1,2,0,1,FALSE,TRUE,FALSE
+"87","The Four Cheese Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2536.95,5,1,2,0,1,FALSE,TRUE,FALSE
+"88","The Four Cheese Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2731.2,5,1,2,0,1,FALSE,TRUE,FALSE
+"89","The Greek Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2539.4,6,0,0,1,2,TRUE,FALSE,TRUE
+"90","The Greek Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2112.35,6,0,0,1,2,TRUE,FALSE,TRUE
+"91","The Greek Pizza",0,0,0,1,0,0,0,0,0,0,0,0,3088.3,6,0,0,1,2,TRUE,FALSE,TRUE
+"92","The Greek Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2488.35,6,0,0,1,2,TRUE,FALSE,TRUE
+"93","The Greek Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2394.9,6,0,0,1,2,TRUE,FALSE,TRUE
+"94","The Greek Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2425,6,0,0,1,2,TRUE,FALSE,TRUE
+"95","The Greek Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2244.4,6,0,0,1,2,TRUE,FALSE,TRUE
+"96","The Greek Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2134.35,6,0,0,1,2,TRUE,FALSE,TRUE
+"97","The Greek Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2127.9,6,0,0,1,2,TRUE,FALSE,TRUE
+"98","The Greek Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2599.85,6,0,0,1,2,TRUE,FALSE,TRUE
+"99","The Greek Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2109.45,6,0,0,1,2,TRUE,FALSE,TRUE
+"100","The Green Garden Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1226.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"101","The Green Garden Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1262.75,5,1,0,1,2,FALSE,FALSE,TRUE
+"102","The Green Garden Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1145.75,5,1,0,1,2,FALSE,FALSE,TRUE
+"103","The Green Garden Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1230.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"104","The Green Garden Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1150,5,1,0,1,2,FALSE,FALSE,TRUE
+"105","The Green Garden Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1181.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"106","The Green Garden Pizza",0,0,0,0,0,0,0,0,0,0,1,0,836.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"107","The Green Garden Pizza",0,0,0,0,0,0,0,0,0,0,0,1,918,5,1,0,1,2,FALSE,FALSE,TRUE
+"108","The Hawaiian Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2442.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"109","The Hawaiian Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2633,3,1,0,0,2,FALSE,FALSE,FALSE
+"110","The Hawaiian Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2878.5,3,1,0,0,2,FALSE,FALSE,FALSE
+"111","The Hawaiian Pizza",0,0,0,1,0,0,0,0,0,0,0,0,2867.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"112","The Hawaiian Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2688,3,1,0,0,2,FALSE,FALSE,FALSE
+"113","The Hawaiian Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2563.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"114","The Hawaiian Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2620.25,3,1,0,0,2,FALSE,FALSE,FALSE
+"115","The Hawaiian Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2616.25,3,1,0,0,2,FALSE,FALSE,FALSE
+"116","The Hawaiian Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2514.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"117","The Hawaiian Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2952.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"118","The Hawaiian Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2816.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"119","The Italian Capocollo Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2153,6,3,0,1,1,FALSE,FALSE,TRUE
+"120","The Italian Capocollo Pizza",0,0,0,1,0,0,0,0,0,0,0,0,2260,6,3,0,1,1,FALSE,FALSE,TRUE
+"121","The Italian Capocollo Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2018.5,6,3,0,1,1,FALSE,FALSE,TRUE
+"122","The Italian Capocollo Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2247.5,6,3,0,1,1,FALSE,FALSE,TRUE
+"123","The Italian Capocollo Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1813,6,3,0,1,1,FALSE,FALSE,TRUE
+"124","The Italian Supreme Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2665,6,1,0,1,2,FALSE,FALSE,TRUE
+"125","The Italian Supreme Pizza",0,0,0,1,0,0,0,0,0,0,0,0,3079.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"126","The Italian Supreme Pizza",0,0,0,0,1,0,0,0,0,0,0,0,3142.25,6,1,0,1,2,FALSE,FALSE,TRUE
+"127","The Italian Supreme Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2958.75,6,1,0,1,2,FALSE,FALSE,TRUE
+"128","The Italian Supreme Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2540.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"129","The Italian Supreme Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2488.75,6,1,0,1,2,FALSE,FALSE,TRUE
+"130","The Italian Supreme Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2446.5,6,1,0,1,2,FALSE,FALSE,TRUE
+"131","The Italian Supreme Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2592,6,1,0,1,2,FALSE,FALSE,TRUE
+"132","The Italian Vegetables Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1653.5,7,1,2,1,2,FALSE,TRUE,TRUE
+"133","The Italian Vegetables Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1396.5,7,1,2,1,2,FALSE,TRUE,TRUE
+"134","The Italian Vegetables Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1397.25,7,1,2,1,2,FALSE,TRUE,TRUE
+"135","The Italian Vegetables Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1404.75,7,1,2,1,2,FALSE,TRUE,TRUE
+"136","The Italian Vegetables Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1202,7,1,2,1,2,FALSE,TRUE,TRUE
+"137","The Italian Vegetables Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1295.5,7,1,2,1,2,FALSE,TRUE,TRUE
+"138","The Italian Vegetables Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1170,7,1,2,1,2,FALSE,TRUE,TRUE
+"139","The Italian Vegetables Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1383.25,7,1,2,1,2,FALSE,TRUE,TRUE
+"140","The Mediterranean Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1147.5,7,1,2,0,3,FALSE,TRUE,FALSE
+"141","The Mediterranean Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1301,7,1,2,0,3,FALSE,TRUE,FALSE
+"142","The Mediterranean Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1246,7,1,2,0,3,FALSE,TRUE,FALSE
+"143","The Mediterranean Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1500,7,1,2,0,3,FALSE,TRUE,FALSE
+"144","The Mediterranean Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1214.75,7,1,2,0,3,FALSE,TRUE,FALSE
+"145","The Mediterranean Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1453.25,7,1,2,0,3,FALSE,TRUE,FALSE
+"146","The Mediterranean Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1276.75,7,1,2,0,3,FALSE,TRUE,FALSE
+"147","The Mediterranean Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1268.25,7,1,2,0,3,FALSE,TRUE,FALSE
+"148","The Mediterranean Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1073.75,7,1,2,0,3,FALSE,TRUE,FALSE
+"149","The Mediterranean Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1432.25,7,1,2,0,3,FALSE,TRUE,FALSE
+"150","The Mexicana Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2358.25,8,0,0,2,4,TRUE,FALSE,TRUE
+"151","The Mexicana Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1915.5,8,0,0,2,4,TRUE,FALSE,TRUE
+"152","The Mexicana Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2388.75,8,0,0,2,4,TRUE,FALSE,TRUE
+"153","The Mexicana Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2230.75,8,0,0,2,4,TRUE,FALSE,TRUE
+"154","The Mexicana Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2643.25,8,0,0,2,4,TRUE,FALSE,TRUE
+"155","The Mexicana Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2234,8,0,0,2,4,TRUE,FALSE,TRUE
+"156","The Mexicana Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1807,8,0,0,2,4,TRUE,FALSE,TRUE
+"157","The Mexicana Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2024.25,8,0,0,2,4,TRUE,FALSE,TRUE
+"158","The Mexicana Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2872.5,8,0,0,2,4,TRUE,FALSE,TRUE
+"159","The Mexicana Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2030.75,8,0,0,2,4,TRUE,FALSE,TRUE
+"160","The Napolitana Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2306.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"161","The Napolitana Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1910.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"162","The Napolitana Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1774,5,1,0,1,2,FALSE,FALSE,TRUE
+"163","The Napolitana Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1929.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"164","The Napolitana Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1846.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"165","The Napolitana Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2291.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"166","The Napolitana Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2023.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"167","The Napolitana Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2277.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"168","The Napolitana Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1986.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"169","The Napolitana Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2121,5,1,0,1,2,FALSE,FALSE,TRUE
+"170","The Napolitana Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1666.5,5,1,0,1,2,FALSE,FALSE,TRUE
+"171","The Pepper Salami Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2342.25,6,2,1,1,1,FALSE,TRUE,TRUE
+"172","The Pepper Salami Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1862.25,6,2,1,1,1,FALSE,TRUE,TRUE
+"173","The Pepper Salami Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2184.5,6,2,1,1,1,FALSE,TRUE,TRUE
+"174","The Pepper Salami Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2056,6,2,1,1,1,FALSE,TRUE,TRUE
+"175","The Pepper Salami Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2266.5,6,2,1,1,1,FALSE,TRUE,TRUE
+"176","The Pepper Salami Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2213.5,6,2,1,1,1,FALSE,TRUE,TRUE
+"177","The Pepper Salami Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1894.25,6,2,1,1,1,FALSE,TRUE,TRUE
+"178","The Pepper Salami Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2227,6,2,1,1,1,FALSE,TRUE,TRUE
+"179","The Pepper Salami Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2065.5,6,2,1,1,1,FALSE,TRUE,TRUE
+"180","The Pepperoni Pizza",1,0,0,0,0,0,0,0,0,0,0,0,3001.25,2,1,0,0,1,FALSE,FALSE,FALSE
+"181","The Pepperoni Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2554.25,2,1,0,0,1,FALSE,FALSE,FALSE
+"182","The Pepperoni Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2323.75,2,1,0,0,1,FALSE,FALSE,FALSE
+"183","The Pepperoni Pizza",0,0,0,1,0,0,0,0,0,0,0,0,2112.75,2,1,0,0,1,FALSE,FALSE,FALSE
+"184","The Pepperoni Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2998.75,2,1,0,0,1,FALSE,FALSE,FALSE
+"185","The Pepperoni Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2055.25,2,1,0,0,1,FALSE,FALSE,FALSE
+"186","The Pepperoni Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2819.25,2,1,0,0,1,FALSE,FALSE,FALSE
+"187","The Pepperoni Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2637.75,2,1,0,0,1,FALSE,FALSE,FALSE
+"188","The Pepperoni Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2466.75,2,1,0,0,1,FALSE,FALSE,FALSE
+"189","The Pepperoni Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2471,2,1,0,0,1,FALSE,FALSE,FALSE
+"190","The Pepperoni, Mushroom, and Peppers Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1435,3,1,1,0,1,FALSE,TRUE,FALSE
+"191","The Pepperoni, Mushroom, and Peppers Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1548,3,1,1,0,1,FALSE,TRUE,FALSE
+"192","The Pepperoni, Mushroom, and Peppers Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1786,3,1,1,0,1,FALSE,TRUE,FALSE
+"193","The Pepperoni, Mushroom, and Peppers Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1689,3,1,1,0,1,FALSE,TRUE,FALSE
+"194","The Pepperoni, Mushroom, and Peppers Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1474,3,1,1,0,1,FALSE,TRUE,FALSE
+"195","The Pepperoni, Mushroom, and Peppers Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1234.5,3,1,1,0,1,FALSE,TRUE,FALSE
+"196","The Pepperoni, Mushroom, and Peppers Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1414.5,3,1,1,0,1,FALSE,TRUE,FALSE
+"197","The Prosciutto and Arugula Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2218,3,1,0,0,2,FALSE,FALSE,FALSE
+"198","The Prosciutto and Arugula Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2005.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"199","The Prosciutto and Arugula Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1886.5,3,1,0,0,2,FALSE,FALSE,FALSE
+"200","The Prosciutto and Arugula Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1876.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"201","The Prosciutto and Arugula Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2211.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"202","The Prosciutto and Arugula Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1956,3,1,0,0,2,FALSE,FALSE,FALSE
+"203","The Prosciutto and Arugula Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1871.25,3,1,0,0,2,FALSE,FALSE,FALSE
+"204","The Prosciutto and Arugula Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2333.25,3,1,0,0,2,FALSE,FALSE,FALSE
+"205","The Prosciutto and Arugula Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2059.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"206","The Prosciutto and Arugula Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1847.75,3,1,0,0,2,FALSE,FALSE,FALSE
+"207","The Sicilian Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2987.75,6,1,1,1,2,FALSE,TRUE,TRUE
+"208","The Sicilian Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2442.75,6,1,1,1,2,FALSE,TRUE,TRUE
+"209","The Sicilian Pizza",0,0,0,1,0,0,0,0,0,0,0,0,2434.75,6,1,1,1,2,FALSE,TRUE,TRUE
+"210","The Sicilian Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2433.5,6,1,1,1,2,FALSE,TRUE,TRUE
+"211","The Sicilian Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2653.75,6,1,1,1,2,FALSE,TRUE,TRUE
+"212","The Sicilian Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2473.75,6,1,1,1,2,FALSE,TRUE,TRUE
+"213","The Sicilian Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2260,6,1,1,1,2,FALSE,TRUE,TRUE
+"214","The Sicilian Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2678,6,1,1,1,2,FALSE,TRUE,TRUE
+"215","The Sicilian Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2896.5,6,1,1,1,2,FALSE,TRUE,TRUE
+"216","The Soppressata Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1323.5,5,0,1,0,3,TRUE,TRUE,FALSE
+"217","The Soppressata Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1289.25,5,0,1,0,3,TRUE,TRUE,FALSE
+"218","The Soppressata Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1638.5,5,0,1,0,3,TRUE,TRUE,FALSE
+"219","The Soppressata Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1505,5,0,1,0,3,TRUE,TRUE,FALSE
+"220","The Soppressata Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1476,5,0,1,0,3,TRUE,TRUE,FALSE
+"221","The Soppressata Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1335,5,0,1,0,3,TRUE,TRUE,FALSE
+"222","The Soppressata Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1107.25,5,0,1,0,3,TRUE,TRUE,FALSE
+"223","The Soppressata Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1488.5,5,0,1,0,3,TRUE,TRUE,FALSE
+"224","The Soppressata Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1243.75,5,0,1,0,3,TRUE,TRUE,FALSE
+"225","The Soppressata Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1157.5,5,0,1,0,3,TRUE,TRUE,FALSE
+"226","The Southwest Chicken Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2495.5,8,1,0,2,4,FALSE,FALSE,TRUE
+"227","The Southwest Chicken Pizza",0,0,0,1,0,0,0,0,0,0,0,0,3096.25,8,1,0,2,4,FALSE,FALSE,TRUE
+"228","The Southwest Chicken Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2584,8,1,0,2,4,FALSE,FALSE,TRUE
+"229","The Southwest Chicken Pizza",0,0,0,0,0,0,1,0,0,0,0,0,3241.5,8,1,0,2,4,FALSE,FALSE,TRUE
+"230","The Southwest Chicken Pizza",0,0,0,0,0,0,0,1,0,0,0,0,3019.5,8,1,0,2,4,FALSE,FALSE,TRUE
+"231","The Southwest Chicken Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2950.25,8,1,0,2,4,FALSE,FALSE,TRUE
+"232","The Southwest Chicken Pizza",0,0,0,0,0,0,0,0,0,1,0,0,2891.25,8,1,0,2,4,FALSE,FALSE,TRUE
+"233","The Southwest Chicken Pizza",0,0,0,0,0,0,0,0,0,0,1,0,3022,8,1,0,2,4,FALSE,FALSE,TRUE
+"234","The Southwest Chicken Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2585.75,8,1,0,2,4,FALSE,FALSE,TRUE
+"235","The Spicy Italian Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2762,6,2,0,1,2,FALSE,FALSE,TRUE
+"236","The Spicy Italian Pizza",0,1,0,0,0,0,0,0,0,0,0,0,2646.25,6,2,0,1,2,FALSE,FALSE,TRUE
+"237","The Spicy Italian Pizza",0,0,0,0,1,0,0,0,0,0,0,0,3430.75,6,2,0,1,2,FALSE,FALSE,TRUE
+"238","The Spicy Italian Pizza",0,0,0,0,0,1,0,0,0,0,0,0,2985.75,6,2,0,1,2,FALSE,FALSE,TRUE
+"239","The Spicy Italian Pizza",0,0,0,0,0,0,1,0,0,0,0,0,3459,6,2,0,1,2,FALSE,FALSE,TRUE
+"240","The Spicy Italian Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2795.5,6,2,0,1,2,FALSE,FALSE,TRUE
+"241","The Spicy Italian Pizza",0,0,0,0,0,0,0,0,1,0,0,0,2372.5,6,2,0,1,2,FALSE,FALSE,TRUE
+"242","The Spicy Italian Pizza",0,0,0,0,0,0,0,0,0,0,1,0,2999.5,6,2,0,1,2,FALSE,FALSE,TRUE
+"243","The Spicy Italian Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2708.75,6,2,0,1,2,FALSE,FALSE,TRUE
+"244","The Spinach and Feta Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2047.25,5,1,0,0,2,FALSE,FALSE,FALSE
+"245","The Spinach and Feta Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2146.25,5,1,0,0,2,FALSE,FALSE,FALSE
+"246","The Spinach and Feta Pizza",0,0,0,1,0,0,0,0,0,0,0,0,1878.25,5,1,0,0,2,FALSE,FALSE,FALSE
+"247","The Spinach and Feta Pizza",0,0,0,0,1,0,0,0,0,0,0,0,2231.75,5,1,0,0,2,FALSE,FALSE,FALSE
+"248","The Spinach and Feta Pizza",0,0,0,0,0,0,0,1,0,0,0,0,2319,5,1,0,0,2,FALSE,FALSE,FALSE
+"249","The Spinach and Feta Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1435,5,1,0,0,2,FALSE,FALSE,FALSE
+"250","The Spinach and Feta Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1925.25,5,1,0,0,2,FALSE,FALSE,FALSE
+"251","The Spinach and Feta Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1897.25,5,1,0,0,2,FALSE,FALSE,FALSE
+"252","The Spinach Pesto Pizza",1,0,0,0,0,0,0,0,0,0,0,0,1269.25,6,1,2,1,1,FALSE,TRUE,TRUE
+"253","The Spinach Pesto Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1211,6,1,2,1,1,FALSE,TRUE,TRUE
+"254","The Spinach Pesto Pizza",0,0,1,0,0,0,0,0,0,0,0,0,1513.75,6,1,2,1,1,FALSE,TRUE,TRUE
+"255","The Spinach Pesto Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1485.5,6,1,2,1,1,FALSE,TRUE,TRUE
+"256","The Spinach Pesto Pizza",0,0,0,0,0,0,1,0,0,0,0,0,1261.75,6,1,2,1,1,FALSE,TRUE,TRUE
+"257","The Spinach Pesto Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1377,6,1,2,1,1,FALSE,TRUE,TRUE
+"258","The Spinach Pesto Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1409.25,6,1,2,1,1,FALSE,TRUE,TRUE
+"259","The Spinach Pesto Pizza",0,0,0,0,0,0,0,0,0,1,0,0,953.75,6,1,2,1,1,FALSE,TRUE,TRUE
+"260","The Spinach Pesto Pizza",0,0,0,0,0,0,0,0,0,0,0,1,1169.25,6,1,2,1,1,FALSE,TRUE,TRUE
+"261","The Spinach Supreme Pizza",0,1,0,0,0,0,0,0,0,0,0,0,1298,8,2,0,1,4,FALSE,FALSE,TRUE
+"262","The Spinach Supreme Pizza",0,0,0,0,0,1,0,0,0,0,0,0,1356.75,8,2,0,1,4,FALSE,FALSE,TRUE
+"263","The Spinach Supreme Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1283,8,2,0,1,4,FALSE,FALSE,TRUE
+"264","The Spinach Supreme Pizza",0,0,0,0,0,0,0,0,1,0,0,0,1116.25,8,2,0,1,4,FALSE,FALSE,TRUE
+"265","The Spinach Supreme Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1207,8,2,0,1,4,FALSE,FALSE,TRUE
+"266","The Spinach Supreme Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1136.5,8,2,0,1,4,FALSE,FALSE,TRUE
+"267","The Thai Chicken Pizza",1,0,0,0,0,0,0,0,0,0,0,0,3657.25,5,1,0,1,3,FALSE,FALSE,TRUE
+"268","The Thai Chicken Pizza",0,1,0,0,0,0,0,0,0,0,0,0,3009.25,5,1,0,1,3,FALSE,FALSE,TRUE
+"269","The Thai Chicken Pizza",0,0,1,0,0,0,0,0,0,0,0,0,3843.75,5,1,0,1,3,FALSE,FALSE,TRUE
+"270","The Thai Chicken Pizza",0,0,0,1,0,0,0,0,0,0,0,0,3686,5,1,0,1,3,FALSE,FALSE,TRUE
+"271","The Thai Chicken Pizza",0,0,0,0,0,0,1,0,0,0,0,0,4073.75,5,1,0,1,3,FALSE,FALSE,TRUE
+"272","The Thai Chicken Pizza",0,0,0,0,0,0,0,1,0,0,0,0,3272.5,5,1,0,1,3,FALSE,FALSE,TRUE
+"273","The Thai Chicken Pizza",0,0,0,0,0,0,0,0,1,0,0,0,3736.25,5,1,0,1,3,FALSE,FALSE,TRUE
+"274","The Thai Chicken Pizza",0,0,0,0,0,0,0,0,0,1,0,0,3503.25,5,1,0,1,3,FALSE,FALSE,TRUE
+"275","The Thai Chicken Pizza",0,0,0,0,0,0,0,0,0,0,0,1,3813,5,1,0,1,3,FALSE,FALSE,TRUE
+"276","The Vegetables + Vegetables Pizza",1,0,0,0,0,0,0,0,0,0,0,0,2289.5,8,2,1,1,3,FALSE,TRUE,TRUE
+"277","The Vegetables + Vegetables Pizza",0,0,1,0,0,0,0,0,0,0,0,0,2201.75,8,2,1,1,3,FALSE,TRUE,TRUE
+"278","The Vegetables + Vegetables Pizza",0,0,0,1,0,0,0,0,0,0,0,0,2095.25,8,2,1,1,3,FALSE,TRUE,TRUE
+"279","The Vegetables + Vegetables Pizza",0,0,0,0,1,0,0,0,0,0,0,0,1719,8,2,1,1,3,FALSE,TRUE,TRUE
+"280","The Vegetables + Vegetables Pizza",0,0,0,0,0,0,1,0,0,0,0,0,2298.25,8,2,1,1,3,FALSE,TRUE,TRUE
+"281","The Vegetables + Vegetables Pizza",0,0,0,0,0,0,0,1,0,0,0,0,1923,8,2,1,1,3,FALSE,TRUE,TRUE
+"282","The Vegetables + Vegetables Pizza",0,0,0,0,0,0,0,0,0,1,0,0,1584.75,8,2,1,1,3,FALSE,TRUE,TRUE
+"283","The Vegetables + Vegetables Pizza",0,0,0,0,0,0,0,0,0,0,1,0,1936.25,8,2,1,1,3,FALSE,TRUE,TRUE
+"284","The Vegetables + Vegetables Pizza",0,0,0,0,0,0,0,0,0,0,0,1,2330.5,8,2,1,1,3,FALSE,TRUE,TRUE
