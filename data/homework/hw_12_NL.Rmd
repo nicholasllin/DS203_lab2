@@ -1,9 +1,10 @@
 ---
 title: "HW 12 CLM"
-author: "Nick"
-editor_options: 
-  markdown: 
+author: "Nick, Blake, Peter, Reese"
+editor_options:
+  markdown:
     wrap: sentence
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE}
@@ -16,7 +17,7 @@ library(stargazer)
 library(dplyr)
 ```
 
-```{r}
+```{r, include = FALSE}
 #read data
 data <- read.delim("videos.txt")
 
@@ -26,35 +27,30 @@ colSums(is.na(data))
 #clear NA data
 data <- na.omit(data)
 colSums(is.na(data))
-glimpse(data)
+#glimpse(data)
 
 #Convert values of 0 in rates column to avg of non-zero results
 avg_non_zero <- mean(data$rate[data$rate != 0], na.rm = TRUE)
 data$rate[data$rate == 0] <- avg_non_zero
-
-#Remove all data that have a score of 0 for rate
-#data <- data %>%
-#  filter(rate != 0)
 ```
 
 ```{r}
 model1 <- lm(log(views) ~ rate + length, data = data)
 ```
 
-> Based on some exploratory data analysis, it was discovered that the `Views` histogram was highly skewed to the right, but a histogram of `log(Views)` was relatively normally distributed..
-> Therefore, `log(Views)` was selected as the model dependent variable.
-> Additionally it was discovered that a value of 0 in the `rates` variable represents a view in which no ratings were ever selected.
-> If left alone, this will skew the model since these values will be taken as real ratings.
-> Therefore, all samples with a value of 0 in the `rates` column were changed to NaN values to remove this issue.
+-   Based on some exploratory data analysis, it was discovered that the `Views` histogram was highly skewed to the right, but a histogram of `log(Views)` was relatively normally distributed. Therefore, `log(Views)` was selected as the model dependent variable.
+-   Additionally it was discovered that a value of 0 in the `rates` variable represents a view in which no ratings were ever selected. If left alone, this will skew the model since these values will be taken as real ratings. Therefore, all samples with a value of 0 in the `rates` column were changed to NaN values to remove this issue.
 
-#Question 1.1 \> To assess IID data, we need to know about the sampling process.
-\> From the Dataset for "Statistics and Social Network of YouTube Videos" documentation, the data contains 9618 observations of videos performed by a crawler extracting information from the Youtube API. Based on this, there are several reasons the data is NOT independent of each other.
-\>\* The Youtube videos form a direct graph, where each video is a node in the graph.
-The edges of the graph are based on if the videos are related to each other within 20 videos.
-The data of the video is collected through this graph, which means that each video all has some relation to another, showing that they are NOT independent.
-\>\* Youtube videos that are related are likely inspired or based on similar topics which result in non-independence (clustering).
-\>\* A particular youtuber might make videos that are similar to each other (clustering).
-\>\* Popular videos will inspire other videomakers to make similar videos (strategic effect).
+#Question 1.1
+
+> To assess IID data, we need to know about the sampling process.From the Dataset for "Statistics and Social Network of YouTube Videos" documentation, the data contains 9618 observations of videos performed by a crawler extracting information from the Youtube API. Based on this, there are several reasons the data is NOT independent of each other.
+
+-   The Youtube videos form a direct graph, where each video is a node in the graph.The edges of the graph are based on if the videos are related to each other within 20 videos.The data of the video is collected through this graph, which means that each video all has some relation to another, showing that they are NOT independent.
+-   Youtube videos that are related are likely inspired or based on similar topics which result in non-independence (clustering).
+-   A particular youtuber might make videos that are similar to each other (clustering).
+-   Popular videos will inspire other videomakers to make similar videos (strategic effect).
+
+\newpage
 
 #Question 1.2
 
@@ -66,25 +62,29 @@ model1$coefficients
 vif(model1)
 ```
 
-> Since no coefficients were dropped, it suggests no perfect colinearity.
-> The somewhat low VIF scores of each variable show that they are barely correlated, which also indicates no near-perfect colinearity.
-> This assumption also requires that a unique BLP exists.
-> Looking at the distributions of the variables below, there appear to be moderate skew in the `rate` values and the `length` values.
-> However, neither skew is not to the extent where we need to be worried about extremely heavy tails.
+-   Since no coefficients were dropped, it suggests no perfect colinearity.
+-   The somewhat low VIF scores of each variable show that they are barely correlated, which also indicates no near-perfect colinearity.
+-   This assumption also requires that a unique BLP exists. Looking at the distributions of the variables below, there appear to be moderate skew in the `rate` values and the `length` values.However, neither skew is not to the extent where we need to be worried about extremely heavy tails.
 
-```{r}
+```{r, echo = FALSE, results = "show"}
 plot1 <- data %>%
   ggplot(aes(x = rate)) +
-  geom_histogram()
+  geom_histogram() + 
+  ggtitle("Histogram of Rate")
 
 plot2 <- data %>%
   ggplot(aes(x = length)) +
-  geom_histogram()
+  geom_histogram() +
+  ggtitle("Histogram of Length")
 
 plot1 | plot2
 ```
 
-#Question 1.3 \> To assess whether there is a linear conditional expectation, we've learned to look at the predicted vs. residuals of the model.
+\newpage
+
+#Question 1.3
+
+-   To assess whether there is a linear conditional expectation, we've learned to look at the predicted vs. residuals of the model.
 
 ```{r}
 data <- data %>%
@@ -94,37 +94,43 @@ data <- data %>%
 
 data %>% ggplot(aes(model1_preds, model1_resids)) +
   geom_point() +
-  stat_smooth() 
+  stat_smooth() +
+  ggtitle("Model 1 Predicted Values vs Residuals")
 ```
 
-> The results show a relatively flat correlation between the prediction and the residuals, indicating linear conditional expectation.
-> There is a non-linear section above a model prediction value of \~8, but this may be pulling the trend downward due to the high leverage of these outlier data points and may not reflect the true nature if more samples were taken in this are of the distribution.
+-   The results show a relatively flat correlation between the prediction and the residuals, indicating linear conditional expectation.There is a non-linear section above a model prediction value of \>\~8, but this may be pulling the trend downward due to the high leverage of these outlier data points and may not reflect the true nature if more samples were taken in this are of the distribution.
 
-#Question 1.4 \> To assess if the model has homoskedastic errors, we can examine the residuals versus fitted plot from above.
-Based on a visual inspection, the samples appear to be relatively homoskedastic.
-However, running a Breusch-Pagan test indicates that the samples are statistically heteroskedastic.
-However, this is may be caused by low number of videos that performed very well (predicted y-value \>8).
-Therefore we can reasonable conclude that the heteroskedasticity in not severe.\
-\> We can also look at the scale-location plot.
-Homoskedasticity would look like a flat smoothing curve here.
+\newpage
+
+#Question 1.4
+
+-   To assess if the model has homoskedastic errors, we can examine the residuals versus fitted plot from the scale-location plot. Homoskedasticity would look like a flat smoothing curve here. The curve is relatively flat and smooth aside from the fitted values \>\~8.
+-   However, running a Breusch-Pagan test indicates that the samples are statistically heteroskedastic.However, this is may be caused by low number of videos that performed very well (predicted y-value \>\~8). Therefore we can reasonable conclude that the heteroskedasticity in not severe.
 
 ```{r}
 plot(model1, which = 3)
+```
+
+```{r}
 bptest(model1)
 ```
+
+\newpage
 
 #Question 1.5
 
 ```{r}
 plot1 <- data %>%
   ggplot(aes(x = model1_resids)) +
-  geom_histogram()
+  geom_histogram() +
+  ggtitle("Histogram of Residuals")
 
 plot2 <- data %>%
   ggplot(aes(sample = model1_resids)) +
-  stat_qq() + stat_qq_line()
+  stat_qq() + stat_qq_line() + 
+  ggtitle("QQ Plot of Residuals")
 
 plot1 / plot2
 ```
 
-> The histogram of the residuals and the qqplot show signs of normally distributed errors.
+-   The histogram of the residuals and the qqplot show signs of normally distributed errors.
