@@ -1,0 +1,250 @@
+---
+title: "Lab2_Modeling"
+output: pdf_document
+date: "2023-12-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(lubridate)
+library(mltools)
+library(data.table)
+library(car)
+library(lmtest)
+```
+
+```{r source data and label ingredients, echo = FALSE, message=FALSE}
+# Load the dataset
+data_df <- read_xlsx("./data/external/Data Model - Pizza Sales.xlsx")
+pizza_labels <- unique(data_df$pizza_name)
+
+ingredient_dict <- data_df %>% 
+                    group_by(pizza_name)  %>%
+                    filter(row_number()==1)
+ingredient_dict <- ingredient_dict %>% select(pizza_name, pizza_ingredients)
+ingredient_list <- ingredient_dict[1, 'pizza_ingredients']
+for (row in 2:nrow(ingredient_dict)) {
+    ingredient_list <- paste(ingredient_list, ingredient_dict[row, 'pizza_ingredients'], sep=", ")
+}
+ingredient <- unique(unlist(strsplit(ingredient_list, ', ')))
+
+is_meat <- c(TRUE, FALSE, FALSE, TRUE, FALSE,
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, TRUE, FALSE, 
+             TRUE, FALSE, TRUE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, TRUE, 
+             TRUE, FALSE, FALSE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, TRUE, 
+             TRUE, TRUE, TRUE, FALSE, FALSE)
+
+is_sauce <- c(FALSE, FALSE, FALSE, FALSE, FALSE,
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE)
+
+is_alt_cheese <- c(FALSE, FALSE, FALSE, FALSE, FALSE,
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, TRUE, FALSE, 
+             TRUE, FALSE, FALSE, TRUE, FALSE, 
+             TRUE, TRUE, TRUE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, TRUE, TRUE, 
+             TRUE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE)
+
+is_veggie <- c(FALSE, TRUE, TRUE, FALSE, TRUE,
+             TRUE, TRUE, TRUE, TRUE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, TRUE, TRUE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, TRUE, FALSE, 
+             FALSE, FALSE, TRUE, TRUE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, FALSE)
+
+indgredient_type <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
+```
+
+```{r create ingredient type dictionary, echo = FALSE}
+meat_count = c()
+alt_cheese_count = c()
+alt_sauce_count = c()
+veggie_count = c()
+ingredeint_count = c()
+for (row in 1:nrow(ingredient_dict)) {
+  ingredients = toString(ingredient_dict[row, 'pizza_ingredients'])
+  meat = 0
+  alt_cheese = 0
+  alt_sauce = 0
+  veggie = 0
+  ingredeint = 0
+  for (ingredient in unlist(strsplit(ingredients, ", "))) {
+    ingredient_data = indgredient_type[indgredient_type$ingredient == ingredient,]
+    meat = meat + ingredient_data$is_meat
+    alt_cheese = alt_cheese + ingredient_data$is_alt_cheese
+    alt_sauce = alt_sauce + ingredient_data$is_sauce
+    veggie = veggie + ingredient_data$is_veggie
+    ingredeint = ingredeint + 1
+  }
+  meat_count = append(meat_count, meat) 
+  alt_cheese_count = append(alt_cheese_count, alt_cheese) 
+  alt_sauce_count = append(alt_sauce_count, alt_sauce) 
+  veggie_count = append(veggie_count, veggie)
+  ingredeint_count = append(ingredeint_count, ingredeint)
+}
+pizza_name <-  ingredient_dict$pizza_name
+pizza_ingredients <- ingredient_dict$pizza_ingredients
+# Could include ingredients below
+pizza_contents <- data.frame(pizza_name, ingredeint_count, meat_count, alt_cheese_count, alt_sauce_count, veggie_count)       
+```
+
+```{r create model data, echo = FALSE}
+prepare_data <- function(df, pizza_contents) {
+  df$month <- substr( df$order_date , start = 6 , stop = 7 )
+  df <- df %>% select(month, total_price, pizza_name)
+  df <- df %>% 
+    group_by(pizza_name, month)  %>%
+    summarise(total_sales = sum(total_price),
+              .groups = 'drop')
+  df <- merge(df, pizza_contents, by = "pizza_name", all = TRUE, sort = TRUE)
+  df$is_vegetarian <- (df$meat_count == 0)
+  df$alt_cheese <- (df$alt_cheese_count != 0)
+  df$alt_sauce <- (df$alt_sauce_count != 0)
+  df$month <- as.factor(df$month)
+  df <- one_hot(as.data.table(df))
+  return(df)
+}
+
+model_data <-prepare_data(data_df, pizza_contents)
+
+sample <- sample(c(TRUE, FALSE), nrow(model_data), replace=TRUE, prob=c(0.75,0.25))
+train  <- model_data[sample, ]
+test   <- model_data[!sample, ]
+#write.csv(test, 'test_data.csv')
+#write.csv(train, 'train_data.csv')
+```
+
+## Imports
+
+```{r reading in train and test, message= FALSE}
+train <- read_csv("./data/processed/train_data.csv")
+test<- read_csv("./data/processed/test_data.csv")
+```
+
+## Basic Model
+
+```{r model1: any meat}
+model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = train)
+summary(model1)
+```
+
+## Advanced Model
+
+```{r model2: number of meats}
+model2 <- lm(total_sales ~ meat_count + ingredeint_count + alt_sauce + alt_cheese + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = train)
+summary(model2)
+```
+
+## Assessing Linear Conditional Expectation
+
+```{r}
+#Add residuals from model1 and model2 to 'train' data
+train <- train %>%  
+  mutate(model_1_residuals = resid(model1))
+
+train <- train %>%  
+  mutate(model_2_residuals = resid(model2))
+
+#Add model predictions to 'train' data
+train <- train %>% 
+  mutate(model_1_prediction = predict(model1)) 
+
+train <- train %>% 
+  mutate(model_2_prediction = predict(model2))
+```
+
+```{r}
+plot_1 <- train %>%  
+  ggplot(aes(x = model_1_prediction, y = model_1_residuals)) + 
+  geom_point() + stat_smooth() 
+
+plot_2 <- train %>% 
+  ggplot(aes(x = model_2_prediction, y = model_2_residuals)) + 
+  geom_point() + stat_smooth() 
+
+plot_1 | plot_2
+```
+
+## Assessing Perfect and Near Perfect Colinearity
+
+No variables were automatically removed by R when performing a linear regression indicating there is not perfect colinearity between any variables. To assess near perfect colinearity we run a vif test for the two models:
+
+```{r}
+vif(model1)
+vif(model2)
+```
+
+No variance inflation factor (VIF) for any variable is above a value of \~1.75, indicating limited colinearity between variables
+
+## Assessing Homo/Heteroskedasticity
+
+```{r}
+plot(model1, which=3)
+plot(model2, which=3)
+```
+
+In model1, the variance is spread relatively consistently, especially above a fitted value of \$2000. Below that value, however, the variance looks visually tighter than the rest of the values.
+
+Similarly for model 2, above \~\$2000, the plot is homoskedastic. Below a value of \$2000, the variance visually decreases.
+
+```{r}
+bptest(model1)
+bptest(model2)
+```
+
+According to the Breuch-Pagan test, the null hypothesis of homoskedasticity can be rejected, confirming the heteroskedastic nature of the data.
+
+## Assessing Normality of Errors
+
+```{r}
+plot_3 <- train %>%
+ggplot(aes(x = model_1_residuals)) +
+geom_histogram() +
+ggtitle("Histogram of Residuals")
+
+plot_4 <- train %>%
+ggplot(aes(sample = model_1_residuals)) +
+stat_qq() + stat_qq_line() +
+ggtitle("QQ Plot of Residuals")
+
+plot_3 / plot_4
+```
