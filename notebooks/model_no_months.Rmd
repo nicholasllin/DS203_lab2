@@ -10,7 +10,9 @@ library(data.table)
 ```{r}
 setwd("/home/rstudio/DS203_lab2")
 data_df <- read_xlsx("./data/external/Data Model - Pizza Sales.xlsx")
+ingredient_type <- read_csv("./data/processed/Ingredient_Classification.csv")
 ```
+
 ```{r}
 pizza_labels <- unique(data_df$pizza_name)
 
@@ -80,7 +82,7 @@ is_veggie <- c(FALSE, TRUE, TRUE, FALSE, TRUE,
              FALSE, FALSE, FALSE, TRUE, FALSE, 
              FALSE, FALSE, FALSE, TRUE, FALSE)
 
-indgredient_type <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
+#indgredient_type_a <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
 ```
 
 ```{r create ingredient type dictionary, echo = FALSE}
@@ -88,32 +90,32 @@ meat_count = c()
 alt_cheese_count = c()
 alt_sauce_count = c()
 veggie_count = c()
-ingredeint_count = c()
+ing_int_count = c()
 for (row in 1:nrow(ingredient_dict)) {
   ingredients = toString(ingredient_dict[row, 'pizza_ingredients'])
   meat = 0
   alt_cheese = 0
   alt_sauce = 0
   veggie = 0
-  ingredeint = 0
+  ing_int = 0
   for (ingredient in unlist(strsplit(ingredients, ", "))) {
-    ingredient_data = indgredient_type[indgredient_type$ingredient == ingredient,]
+    ingredient_data = ingredient_type[ingredient_type$ingredient == ingredient,]
     meat = meat + ingredient_data$is_meat
     alt_cheese = alt_cheese + ingredient_data$is_alt_cheese
     alt_sauce = alt_sauce + ingredient_data$is_sauce
     veggie = veggie + ingredient_data$is_veggie
-    ingredeint = ingredeint + 1
+    ing_int = ing_int + 1
   }
   meat_count = append(meat_count, meat) 
   alt_cheese_count = append(alt_cheese_count, alt_cheese) 
   alt_sauce_count = append(alt_sauce_count, alt_sauce) 
   veggie_count = append(veggie_count, veggie)
-  ingredeint_count = append(ingredeint_count, ingredeint)
+  ing_int_count = append(ing_int_count, ing_int)
 }
 pizza_name <-  ingredient_dict$pizza_name
 pizza_ingredients <- ingredient_dict$pizza_ingredients
 # Could include ingredients below
-pizza_contents <- data.frame(pizza_name, ingredeint_count, meat_count, alt_cheese_count, alt_sauce_count, veggie_count)       
+pizza_contents <- data.frame(pizza_name, ing_int_count, meat_count, alt_cheese_count, alt_sauce_count, veggie_count)       
 ```
 
 ```{r}
@@ -136,11 +138,11 @@ test   <- model_data[!sample, ]
 ```
 
 ```{r}
-model1 <- lm(total_sales ~ ingredeint_count + is_vegetarian, data = train)
+model1 <- lm(total_sales ~ ing_int_count + is_vegetarian, data = train)
 summary(model1)
 ```
 ```{r}
-model2 <- lm(total_sales ~ meat_count + ingredeint_count + alt_sauce + alt_cheese, data = train)
+model2 <- lm(total_sales ~ meat_count + ing_int_count + alt_sauce + alt_cheese, data = train)
 summary(model2)
 ```
 
