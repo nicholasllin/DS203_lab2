@@ -1,0 +1,148 @@
+```{r packages, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(lubridate)
+library(data.table)
+```
+
+```{r}
+setwd("/home/rstudio/DS203_lab2")
+data_df <- read_xlsx("./data/external/Data Model - Pizza Sales.xlsx")
+ingredient_type <- read_csv("./data/processed/Ingredient_Classification.csv")
+```
+
+```{r}
+pizza_labels <- unique(data_df$pizza_name)
+
+ingredient_dict <- data_df %>% 
+                    group_by(pizza_name)  %>%
+                    filter(row_number()==1)
+ingredient_dict <- ingredient_dict %>% select(pizza_name, pizza_ingredients)
+ingredient_list <- ingredient_dict[1, 'pizza_ingredients']
+for (row in 2:nrow(ingredient_dict)) {
+    ingredient_list <- paste(ingredient_list, ingredient_dict[row, 'pizza_ingredients'], sep=", ")
+}
+ingredient <- unique(unlist(strsplit(ingredient_list, ', ')))
+
+is_meat <- c(TRUE, FALSE, FALSE, TRUE, FALSE,
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, TRUE, FALSE, 
+             TRUE, FALSE, TRUE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, TRUE, 
+             TRUE, FALSE, FALSE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, TRUE, 
+             TRUE, TRUE, TRUE, FALSE, FALSE)
+
+is_sauce <- c(FALSE, FALSE, FALSE, FALSE, FALSE,
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE)
+
+is_alt_cheese <- c(FALSE, FALSE, FALSE, FALSE, FALSE,
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, TRUE, FALSE, 
+             TRUE, FALSE, FALSE, TRUE, FALSE, 
+             TRUE, TRUE, TRUE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, TRUE, TRUE, 
+             TRUE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE)
+
+is_veggie <- c(FALSE, TRUE, TRUE, FALSE, TRUE,
+             TRUE, TRUE, TRUE, TRUE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, TRUE, TRUE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, TRUE, FALSE, 
+             FALSE, FALSE, TRUE, TRUE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, FALSE)
+
+#indgredient_type_a <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
+```
+
+```{r create ingredient type dictionary, echo = FALSE}
+meat_count = c()
+alt_cheese_count = c()
+alt_sauce_count = c()
+veggie_count = c()
+ing_int_count = c()
+for (row in 1:nrow(ingredient_dict)) {
+  ingredients = toString(ingredient_dict[row, 'pizza_ingredients'])
+  meat = 0
+  alt_cheese = 0
+  alt_sauce = 0
+  veggie = 0
+  ing_int = 0
+  for (ingredient in unlist(strsplit(ingredients, ", "))) {
+    ingredient_data = ingredient_type[ingredient_type$ingredient == ingredient,]
+    meat = meat + ingredient_data$is_meat
+    alt_cheese = alt_cheese + ingredient_data$is_alt_cheese
+    alt_sauce = alt_sauce + ingredient_data$is_sauce
+    veggie = veggie + ingredient_data$is_veggie
+    ing_int = ing_int + 1
+  }
+  meat_count = append(meat_count, meat) 
+  alt_cheese_count = append(alt_cheese_count, alt_cheese) 
+  alt_sauce_count = append(alt_sauce_count, alt_sauce) 
+  veggie_count = append(veggie_count, veggie)
+  ing_int_count = append(ing_int_count, ing_int)
+}
+pizza_name <-  ingredient_dict$pizza_name
+pizza_ingredients <- ingredient_dict$pizza_ingredients
+# Could include ingredients below
+pizza_contents <- data.frame(pizza_name, ing_int_count, meat_count, alt_cheese_count, alt_sauce_count, veggie_count)       
+```
+
+```{r}
+model_data <- data_df %>% select(pizza_name, total_price)
+model_data <- data_df %>% 
+  group_by(pizza_name)  %>%
+  summarise(total_sales = sum(total_price), .groups = 'drop')
+
+
+
+model_data <- merge(model_data, pizza_contents, by = "pizza_name", all = TRUE, sort = TRUE)
+model_data$is_vegetarian <- (model_data$meat_count == 0)
+model_data$alt_cheese <- (model_data$alt_cheese_count != 0)
+model_data$alt_sauce <- (model_data$alt_sauce_count != 0)
+model_data <- one_hot(as.data.table(model_data))
+
+sample <- sample(c(TRUE, FALSE), nrow(model_data), replace=TRUE, prob=c(0.75,0.25))
+train  <- model_data[sample, ]
+test   <- model_data[!sample, ]
+```
+
+```{r}
+model1 <- lm(total_sales ~ ing_int_count + is_vegetarian, data = train)
+summary(model1)
+```
+```{r}
+model2 <- lm(total_sales ~ meat_count + ing_int_count + alt_sauce + alt_cheese, data = train)
+summary(model2)
+```
+
