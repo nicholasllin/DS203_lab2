@@ -98,6 +98,18 @@ is_veggie <- c(FALSE, FALSE, TRUE, TRUE, TRUE,
              FALSE, FALSE, FALSE, TRUE, TRUE, 
              FALSE, TRUE, TRUE, TRUE, FALSE)
 
+# Define a vector of meat ingredients
+meat_ingredients <- c("Sliced Ham", "Pepperoni", "Bacon", "Calabrese Salami", "Barbecued Chicken", 
+                      "Italian Sausage", "Chorizo Sausage", "Prosciutto", "慛duja Salami", "Pancetta", 
+                      "Chicken", "Beef Chuck Roast", "Capocollo", "Genoa Salami", "Prosciutto di San Daniele", 
+                      "Coarse Sicilian Salami", "Luganega Sausage", "Soppressata Salami")
+
+# Create indicator columns for each type of meat
+for (meat in meat_ingredients) {
+  indicator_column <- paste0("meat_", gsub("\\s", "_", tolower(meat)))
+  data_df[[indicator_column]] <- grepl(meat, data_df$pizza_ingredients)
+}
+
 indgredient_type <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
 #write.csv(indgredient_type, 'ingredient_classification.csv')
 ```
