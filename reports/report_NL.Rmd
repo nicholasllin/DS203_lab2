@@ -8,9 +8,22 @@ The goal of this study is to estimate what types of ingredients can significantl
 
 The data in this study is a dataset made for Plato's Pizza, a fictitious pizza restaurant based in New Jersey. It was made publicly available by a group called Maven Analytics. It includes about a year's worth of pizza orders, where each row shows the details about the order such as date and time, number of pizzas, type of pizzas, size, quantity, price, and ingredients. We performed exploration and model building on a 30% subsample of the data. The remaining 70%, totaling {X rows} was used to generate the statistics in this report.
 
+# An Explanation of Key Modeling Decisions (4)
+
+## 1. Observations Removed:
+
+No observations were intentionally removed from the dataset. The analysis was conducted on the complete dataset available for Plato's Pizza, and no observations were excluded due to missing values or other criteria.
 
 
+##2. Variable Transformations:
 
+The dataset is aggregated at the 'pizza_name' and 'month' level without additional changes. These alterations to the data involves creating a summary dataset at a higher level of granularity, providing a monthly overview of key metrics for each pizza type.
+
+## 3. Intentional Covariate Exclusions:
+
+No covariates were intentionally excluded from the provided information. The transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alt cheese, alt sauce, veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales.
+
+# A Table or Visualization (5)
 
 
 
