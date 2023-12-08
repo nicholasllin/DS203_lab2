@@ -21,6 +21,9 @@ library(data.table)
 ```{r source data and label ingredients, echo = FALSE, message=FALSE}
 # Load the dataset
 data_df <- read_xlsx("./data/external/Data Model - Pizza Sales.xlsx")
+data_df$order_date <- as.integer(data_df$order_date)
+data_df$order_date <- as.Date("1899-12-30") + data_df$order_date
+
 pizza_labels <- unique(data_df$pizza_name)
 
 ingredient_dict <- data_df %>% 
@@ -149,11 +152,12 @@ pizza_contents <- data.frame(pizza_name, ingredeint_count, meat_count, alt_chees
 
 ```{r create model data, echo = FALSE}
 prepare_data <- function(df, pizza_contents) {
-  df$month <- substr( df$order_date , start = 6 , stop = 7 )
-  df <- df %>% select(month, total_price, pizza_name)
-  df <- df %>% 
-    group_by(pizza_name, month)  %>%
-    summarise(total_sales = sum(total_price),
+  df$month <- substr(df$order_date, start = 6, stop = 7)
+  df <- df %>%
+    select(month, total_price, pizza_name, starts_with("meat_")) %>%
+    group_by(pizza_name, month) %>%
+    summarise(across(starts_with("meat_"), sum),
+              total_sales = sum(total_price),
               .groups = 'drop')
   df <- merge(df, pizza_contents, by = "pizza_name", all = TRUE, sort = TRUE)
   df$is_vegetarian <- (df$meat_count == 0)
@@ -164,7 +168,7 @@ prepare_data <- function(df, pizza_contents) {
   return(df)
 }
 
-model_data <-prepare_data(data_df, pizza_contents)
+model_data <- prepare_data(data_df, pizza_contents)
 
 sample <- sample(c(TRUE, FALSE), nrow(model_data), replace=TRUE, prob=c(0.75,0.25))
 train  <- model_data[sample, ]
