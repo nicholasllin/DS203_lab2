@@ -116,8 +116,6 @@ grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
 
 The scatterplot and boxplot together indicate that while there is a positive linear trend between Meat Count and Total Sales, the relationship is not strictly monotonic. The plateau and subsequent decline in median Total Sales beyond 2 meats suggest that there may be an optimal range of Meat Count for maximizing Total Sales. Further analysis and potential model refinement may be needed to capture the nuanced relationship between the predictors and Total Sales.
 
-## Model 3: Sales = Intercept + Indicators_for_each_type_of_meat + Number_of_topings + Month + Alternative_Sauce_Indicator + Alternative_Cheese_Indicator (not just mozzarella)
-
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 meat_columns <- c("meat_sliced_ham", "meat_pepperoni", "meat_bacon", "meat_calabrese_salami", 
                   "meat_barbecued_chicken", "meat_italian_sausage", "meat_chorizo_sausage", 
