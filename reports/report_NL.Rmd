@@ -4,6 +4,7 @@ subtitle: "Datasci 203: Lab Report 2"
 author: "Blake Bleier, Reese Carlton, Nicholas Lin, & Peter Valverde" 
 output: 
   pdf_document:
+    latex_engine: xelatex
     toc: true # table of content true
     toc_depth: 1  # upto three depths of headings (specified by #, ## and ###)
     number_sections: true
@@ -37,16 +38,16 @@ The data in this study is a dataset made for Plato's Pizza, a fictitious pizza r
 
 # An Explanation of Key Modeling Decisions (4)
 
-## 1. Observations Removed:
+## Observations Removed:
 
 No observations were intentionally removed from the dataset. The analysis was conducted on the complete dataset available for Plato's Pizza, and no observations were excluded due to missing values or other criteria.
 
 
-## 2. Variable Transformations:
+## Variable Transformations:
 
 The dataset is aggregated at the 'pizza_name' and 'month' level without additional changes. These alterations to the data involves creating a summary dataset at a higher level of granularity, providing a monthly overview of key metrics for each pizza type.
 
-## 3. Intentional Covariate Exclusions:
+## Intentional Covariate Exclusions:
 
 No covariates were intentionally excluded from the provided information. The transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alternative cheese (not mozzarella), alternarive sauce (not red sauce), veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on ingredients in the pizza.
 
@@ -57,6 +58,7 @@ No covariates were intentionally excluded from the provided information. The tra
 ### Boxplot: Total Sales Distribution by Vegetarian Indicator
 
 ```{r}
+train <- read_csv("../data/processed/train_data.csv")
 ggplot(train, aes(x = factor(is_vegetarian), y = total_sales)) +
   geom_boxplot(fill = "skyblue", alpha = 0.7) +
   labs(title = "Boxplot: Total Sales Distribution by Vegetarian Indicator",
@@ -104,7 +106,7 @@ The scatterplot and boxplot together indicate that while there is a positive lin
 
 ## Model 3: Sales = Intercept + Indicators_for_each_type_of_meat + Number_of_topings + Month + Alternative_Sauce_Indicator + Alternative_Cheese_Indicator (not just mozzarella)
 
-```{r}
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
 meat_columns <- c("meat_sliced_ham", "meat_pepperoni", "meat_bacon", "meat_calabrese_salami", 
                   "meat_barbecued_chicken", "meat_italian_sausage", "meat_chorizo_sausage", 
                   "meat_prosciutto", "meat_慛duja_salami", "meat_pancetta", "meat_chicken", 

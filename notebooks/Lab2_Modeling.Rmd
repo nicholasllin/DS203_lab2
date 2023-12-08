@@ -1,6 +1,8 @@
 ---
 title: "Lab2_Modeling"
-output: pdf_document
+output: 
+  pdf_document:
+    latex_engine: xelatex
 date: "2023-12-04"
 ---
 
@@ -175,7 +177,6 @@ train  <- model_data[sample, ]
 test   <- model_data[!sample, ]
 #write.csv(test, 'test_data.csv')
 #write.csv(train, 'train_data.csv')
-train
 ```
 
 ## Imports
