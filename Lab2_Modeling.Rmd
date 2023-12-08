@@ -175,6 +175,7 @@ train  <- model_data[sample, ]
 test   <- model_data[!sample, ]
 #write.csv(test, 'test_data.csv')
 #write.csv(train, 'train_data.csv')
+train
 ```
 
 ## Imports

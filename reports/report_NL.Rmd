@@ -1,3 +1,30 @@
+---
+title: "Do Meat Toppings Effect Pizza Sales?"
+subtitle: "Datasci 203: Lab Report 2"
+author: "Blake Bleier, Reese Carlton, Nicholas Lin, & Peter Valverde" 
+output: 
+  pdf_document:
+    toc: true # table of content true
+    toc_depth: 1  # upto three depths of headings (specified by #, ## and ###)
+    number_sections: true
+---
+\newpage
+\setcounter{page}{1}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages, echo = FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(lubridate)
+library(mltools)
+library(data.table)
+```
+
 # Introduction (1)
 
 Restaurants belong in a competitive industry where success is determined by a delicate balance of food quality, service, and financial judgement. To understand financial decisions restaurants need to carefully manage costs, employ strategic pricing strategies, and maximize sales. With technology continuing to grow and impact our everyday lives, it can be beneficial for non-data driven industries, such as restaurants, to involve data into their decision making. One possibility to do so is to leverage order data to enhance sale strategies and overall performance. By analyzing order histories, restaurants might be able to unravel valuable insights into customer preferences, ordering patterns, and popular menu items. Understanding customer behaviors through this data can allow restaurants to tailor their offerings, optimize menus, and strategically price items. For pizza restaurants, analyzing the correlation between pizza ingredients and sales can reveal valuable insights into customer preferences and optimize their offerings optimally. Understanding the impact of pricing alongside ingredient combinations can guide decisions on pricing strategies or seasonal promotions, ultimately boosting sales and customer satisfaction.
