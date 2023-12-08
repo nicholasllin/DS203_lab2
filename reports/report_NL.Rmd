@@ -35,7 +35,9 @@ The goal of this study is to estimate what types of ingredients can significantl
 
 # Data and Methodology (2-3)
 
-The data in this study is a dataset made for Plato's Pizza, a fictitious pizza restaurant based in New Jersey. It was made publicly available by a group called Maven Analytics. It includes about a year's worth of pizza orders, where each row shows the details about the order such as date and time, number of pizzas, type of pizzas, size, quantity, price, and ingredients. We performed exploration and model building on a 30% subsample of the data. The remaining 70%, totaling {X rows} was used to generate the statistics in this report.
+The data in this study is a data set made for Plato's Pizza, a fictitious pizza restaurant based in New Jersey. It was made publicly available by a group called Maven Analytics. It includes about a year's worth of 48620 pizza orders, where each row shows the details about the order such as date and time, number of pizzas, type of pizzas, size, quantity, price, and ingredients. 
+
+To organize and operationalize sales for the data, individual pizza orders were aggregated into monthly sales per type of pizza. Then, pizza ingredients were split into their respective categories of meat, sauce, cheese, and vegetables. For each pizza, the categories of ingredients were then counted. After organizing the data, it was randomly split into 75% for exploration analysis and 25% of modeling building. The final exploration and model building data set had 110 and 275 data points respectively.
 
 # An Explanation of Key Modeling Decisions (4)
 

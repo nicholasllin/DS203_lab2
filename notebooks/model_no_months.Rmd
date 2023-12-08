@@ -25,63 +25,73 @@ for (row in 2:nrow(ingredient_dict)) {
     ingredient_list <- paste(ingredient_list, ingredient_dict[row, 'pizza_ingredients'], sep=", ")
 }
 ingredient <- unique(unlist(strsplit(ingredient_list, ', ')))
+ingredient <- relist(sort(ingredient), ingredient)
 
-is_meat <- c(TRUE, FALSE, FALSE, TRUE, FALSE,
+is_meat <- c(FALSE, TRUE, FALSE, FALSE, FALSE,
+             FALSE, TRUE, FALSE, TRUE, TRUE, 
+             FALSE, FALSE, TRUE, TRUE, FALSE, 
+             TRUE, FALSE, TRUE, FALSE, TRUE, 
              FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, TRUE, FALSE, FALSE, TRUE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, TRUE, FALSE, TRUE, FALSE, 
-             TRUE, FALSE, TRUE, FALSE, FALSE, 
-             FALSE, TRUE, FALSE, FALSE, TRUE, 
-             TRUE, FALSE, FALSE, FALSE, TRUE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE,
+             
+             TRUE, FALSE, FALSE, TRUE, TRUE, 
              FALSE, FALSE, FALSE, TRUE, TRUE, 
+             
              FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, TRUE, FALSE, TRUE, 
-             TRUE, TRUE, TRUE, FALSE, FALSE)
+             TRUE, FALSE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, TRUE)
 
-is_sauce <- c(FALSE, FALSE, FALSE, FALSE, FALSE,
+is_sauce <- c(TRUE, FALSE, FALSE, FALSE, FALSE,
+             FALSE, FALSE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             
              FALSE, FALSE, FALSE, FALSE, FALSE, 
              TRUE, FALSE, FALSE, FALSE, FALSE, 
-             TRUE, FALSE, FALSE, FALSE, FALSE, 
-             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             
              FALSE, FALSE, FALSE, FALSE, FALSE, 
              FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, TRUE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             TRUE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE)
+             TRUE, FALSE, FALSE, FALSE, FALSE)
 
 is_alt_cheese <- c(FALSE, FALSE, FALSE, FALSE, FALSE,
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, TRUE, FALSE, FALSE, FALSE, 
              FALSE, FALSE, FALSE, FALSE, FALSE, 
              FALSE, FALSE, TRUE, TRUE, FALSE, 
-             TRUE, FALSE, FALSE, TRUE, FALSE, 
-             TRUE, TRUE, TRUE, FALSE, FALSE, 
-             FALSE, TRUE, FALSE, TRUE, TRUE, 
-             TRUE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, TRUE, TRUE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             
+             TRUE, FALSE, FALSE, TRUE, TRUE, 
+             FALSE, TRUE, FALSE, FALSE, FALSE, 
              FALSE, FALSE, FALSE, FALSE, FALSE)
 
-is_veggie <- c(FALSE, TRUE, TRUE, FALSE, TRUE,
-             TRUE, TRUE, TRUE, TRUE, FALSE, 
+is_veggie <- c(FALSE, FALSE, TRUE, TRUE, TRUE,
              FALSE, FALSE, FALSE, FALSE, FALSE, 
-             FALSE, TRUE, TRUE, TRUE, FALSE, 
-             FALSE, FALSE, TRUE, FALSE, TRUE, 
+             FALSE, FALSE, FALSE, FALSE, TRUE, 
              FALSE, FALSE, FALSE, TRUE, FALSE, 
-             FALSE, FALSE, TRUE, TRUE, FALSE, 
-             FALSE, TRUE, FALSE, FALSE, FALSE, 
-             FALSE, TRUE, TRUE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, TRUE, FALSE, FALSE, TRUE, 
+             TRUE, FALSE, FALSE, FALSE, FALSE, 
+             TRUE, TRUE, FALSE, TRUE, TRUE, 
+             FALSE, FALSE, TRUE, TRUE, TRUE, 
+             
              FALSE, FALSE, TRUE, FALSE, FALSE, 
-             FALSE, FALSE, FALSE, TRUE, FALSE, 
-             FALSE, FALSE, FALSE, TRUE, FALSE)
+             FALSE, TRUE, TRUE, FALSE, FALSE, 
+             
+             FALSE, TRUE, TRUE, FALSE, FALSE, 
+             FALSE, FALSE, FALSE, TRUE, TRUE, 
+             FALSE, TRUE, TRUE, TRUE, FALSE)
 
+indgredient_type <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
 #indgredient_type_a <- data.frame(ingredient, is_meat, is_sauce, is_alt_cheese, is_veggie)
 ```
 
@@ -138,11 +148,11 @@ test   <- model_data[!sample, ]
 ```
 
 ```{r}
-model1 <- lm(total_sales ~ ing_int_count + is_vegetarian, data = train)
+model1 <- lm(total_sales ~ ing_int_count + is_vegetarian, data = test)
 summary(model1)
 ```
 ```{r}
-model2 <- lm(total_sales ~ meat_count + ing_int_count + alt_sauce + alt_cheese, data = train)
+model2 <- lm(total_sales ~ meat_count + ing_int_count + alt_sauce + alt_cheese, data = test)
 summary(model2)
 ```
 

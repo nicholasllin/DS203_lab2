@@ -22,6 +22,7 @@ library(data.table)
 
 ```{r source data and label ingredients, echo = FALSE, message=FALSE}
 # Load the dataset
+setwd("/home/rstudio/DS203_lab2")
 data_df <- read_xlsx("./data/external/Data Model - Pizza Sales.xlsx")
 data_df$order_date <- as.integer(data_df$order_date)
 data_df$order_date <- as.Date("1899-12-30") + data_df$order_date
@@ -181,19 +182,20 @@ test   <- model_data[!sample, ]
 
 ## Imports
 ```{r reading in train and test, message= FALSE}
+setwd("/home/rstudio/DS203_lab2")
 train <- read_csv("./data/processed/train_data.csv")
 test<- read_csv("./data/processed/test_data.csv")
 ```
 
 ## Basic Model
 ```{r model1: any meat}
-model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = train)
+model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = test)
 summary(model1)
 ```
 
 ## Advanced Model
 ```{r model2: number of meats}
-model2 <- lm(total_sales ~ meat_count + ingredeint_count + alt_sauce + alt_cheese + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = train)
+model2 <- lm(total_sales ~ meat_count + ingredeint_count + alt_sauce + alt_cheese + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = test)
 summary(model2)
 ```
 
