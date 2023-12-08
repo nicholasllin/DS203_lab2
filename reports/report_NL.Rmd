@@ -34,19 +34,6 @@ library(data.table)
 model <- read_csv("../data/processed/model_data.csv")
 explore<- read_csv("../data/processed/explore_data.csv")
 
-# Basic Model
-model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
-summary(model1)
-
-# Advanced Model 
-model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
-summary(model2)
-
-intercept <- model2$coefficients[1]
-meat_count_coef <- model2$coefficients[1]
-meat_count2_coef <- model2$coefficients[1]
-x_points = c(0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5)
-y_points = intercept + x_points*meat_count_coef + (x_points^2)*meat_count2_coef
 ```
 # Introduction (1)
 
@@ -161,6 +148,20 @@ ggplot(correlation_data, aes(x = meat, y = correlation)) +
 
 
 # Results (6-7)
+## Basic Model: Vegetarian or not
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
+
+model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
+summary(model1)
+```
+
+## Advanced Model: Number of meats
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
+
+model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
+summary(model2)
+```
+
 
 
 # Discussion of Limitations (8)
