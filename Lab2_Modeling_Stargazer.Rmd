@@ -18,6 +18,7 @@ library(readxl)
 library(lubridate)
 library(mltools)
 library(data.table)
+library(stargazer)
 ```
 
 ```{r source data and label ingredients, echo = FALSE, message=FALSE}
@@ -200,4 +201,45 @@ summary(model1)
 ```{r model2: number of meats}
 model2 <- lm(total_sales ~ meat_count + ingredeint_count + alt_sauce + alt_cheese + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = test)
 summary(model2)
+```
+
+## Setting up Stargazer Table
+
+```{r}
+models_list <- list(model1, model2)
+
+stargazer(models_list, title = "Linear Regression Model for General Votes",
+          align = TRUE,       
+          dep.var.caption = "Dependent Variable:",  
+          dep.var.labels.include = TRUE,           
+          covariate.labels = c("Vegetarian", "Meat Count", "Ingredient Count", "Alternate Sauce", "Alternate Cheese", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Intercept"),  
+          dep.var.labels = "Total Sales ($)",  
+          #out = "regression_table.tex"  # Output the LaTeX code to a .tex file
+          #type = "text"
+          type = "latex"
+          )
+```
+
+```{r}
+models_list <- list(model1, model2)
+
+covariate_labels <- c("Vegetarian", "Meat Count", "Ingredient Count", "Alternate Sauce", "Alternate Cheese", "Intercept")
+
+omit <- c("month_02", "month_03", "month_04", "month_05", "month_06", "month_07", "month_08", "month_09", "month_10", "month_11", "month_12")
+
+
+stargazer(models_list, title = "Table 1: Estimated Regressions",
+          align = TRUE,       
+          dep.var.caption = "Dependent Variable:",  
+          dep.var.labels.include = TRUE,           
+          covariate.labels = covariate_labels,  
+          dep.var.labels = "Total Sales ($)",  
+          omit = omit,
+          #add.lines = list(c("Month Control", "$\\checkmark$", "$\\checkmark$")),
+          add.lines = list(c("Month Control", "$\\checkmark$", "$\\checkmark$"), c("\\hline", "", "")),
+          omit.stat = c("f"),
+          #out = "regression_table.tex"  # Output the LaTeX code to a .tex file
+          #type = "text"
+          type = "latex"
+          )
 ```
