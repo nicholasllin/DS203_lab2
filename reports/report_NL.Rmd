@@ -52,7 +52,85 @@ No covariates were intentionally excluded from the provided information. The tra
 
 # A Table or Visualization (5)
 
+## Model 1: Sales = Intercept + Vegitarian_Indicator + Number_of_topings + Month
 
+### Boxplot: Total Sales Distribution by Vegetarian Indicator
+
+```{r}
+ggplot(train, aes(x = factor(is_vegetarian), y = total_sales)) +
+  geom_boxplot(fill = "skyblue", alpha = 0.7) +
+  labs(title = "Boxplot: Total Sales Distribution by Vegetarian Indicator",
+       x = "Vegetarian Indicator",
+       y = "Total Sales") +
+  theme_minimal()
+```
+
+The box plot analysis indicates that, on average, non-vegetarian pizzas tend to have higher Total Sales compared to vegetarian pizzas. While medians provide insights into the central tendency, the spread of the box plot and the presence of outliers suggest that the distribution of Total Sales is broader for non-vegetarian pizzas. This finding could guide further investigations into the factors influencing Total Sales for each category, helping restaurant owners make informed decisions about their pizza offerings.
+
+## Model 2: Sales = Intercept + Number_of_meats + Number_of_topings + Month + Alternative_Sauce_Indicator + Alternative_Cheese_Indicator (not just mozzarella)
+
+### Scatterplot with Trendline: Relationship Between Meat Count and Total Sales
+
+In the scatterplot with the trendline, we observe a positive linear relationship between Meat Count and Total Sales. The blue regression line indicates a positive slope, suggesting that as the Meat Count increases, the Total Sales tend to increase. However, it's essential to note that the scatterplot points show some variability, and there might be other factors influencing the relationship especially around Meat Count of 2
+
+```{r}
+ggplot(train, aes(x = meat_count, y = total_sales, color = meat_count)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, linetype = "solid", color = "blue") +
+  labs(title = "Scatterplot with Trendline: Relationship Between Meat Count and Total Sales",
+       x = "Meat Count",
+       y = "Total Sales",
+       color = "Meat Count") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+
+### Boxplot: Total Sales by Meat Count
+
+The boxplot provides a summary of the distribution of Total Sales across different Meat Counts. The boxplot indicates that the median Total Sales increase with the Meat Count up to 2, where it reaches a peak. Beyond 2 meats, the median Total Sales start to decline. This pattern is consistent with the observation in the scatterplot.
+
+```{r}
+ggplot(train, aes(x = factor(meat_count), y = total_sales)) +
+  geom_boxplot(fill = "skyblue", alpha = 0.7) +
+  labs(title = "Boxplot: Total Sales by Meat Count",
+       x = "Meat Count",
+       y = "Total Sales") +
+  theme_minimal()
+```
+
+
+The scatterplot and boxplot together indicate that while there is a positive linear trend between Meat Count and Total Sales, the relationship is not strictly monotonic. The plateau and subsequent decline in median Total Sales beyond 2 meats suggest that there may be an optimal range of Meat Count for maximizing Total Sales. Further analysis and potential model refinement may be needed to capture the nuanced relationship between the predictors and Total Sales.
+
+## Model 3: Sales = Intercept + Indicators_for_each_type_of_meat + Number_of_topings + Month + Alternative_Sauce_Indicator + Alternative_Cheese_Indicator (not just mozzarella)
+
+```{r}
+meat_columns <- c("meat_sliced_ham", "meat_pepperoni", "meat_bacon", "meat_calabrese_salami", 
+                  "meat_barbecued_chicken", "meat_italian_sausage", "meat_chorizo_sausage", 
+                  "meat_prosciutto", "meat_慛duja_salami", "meat_pancetta", "meat_chicken", 
+                  "meat_beef_chuck_roast", "meat_capocollo", "meat_genoa_salami", 
+                  "meat_prosciutto_di_san_daniele", "meat_coarse_sicilian_salami", 
+                  "meat_luganega_sausage", "meat_soppressata_salami")
+
+
+# Calculate correlation between each meat column and sales
+correlations <- sapply(meat_columns, function(col) cor(train$total_sales, train[[col]]))
+
+# Create a data frame for plotting
+correlation_data <- data.frame(meat = meat_columns, correlation = correlations)
+
+# Sort the data frame by correlation values
+correlation_data <- correlation_data[order(correlation_data$correlation, decreasing = TRUE), ]
+
+# Bar chart
+ggplot(correlation_data, aes(x = meat, y = correlation)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  labs(title = "Correlation between Meat Types and Sales",
+       x = "Meat Types",
+       y = "Correlation with Sales") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
 
 
 # Results (6-7)
