@@ -22,7 +22,7 @@ library(data.table)
 
 ```{r source data and label ingredients, echo = FALSE, message=FALSE}
 # Load the dataset
-data_df <- read_xlsx("./data/external/Data Model - Pizza Sales.xlsx")
+data_df <- read_xlsx("../data/external/Data Model - Pizza Sales.xlsx")
 data_df$order_date <- as.integer(data_df$order_date)
 data_df$order_date <- as.Date("1899-12-30") + data_df$order_date
 
@@ -165,35 +165,39 @@ prepare_data <- function(df, pizza_contents) {
   df$is_vegetarian <- (df$meat_count == 0)
   df$alt_cheese <- (df$alt_cheese_count != 0)
   df$alt_sauce <- (df$alt_sauce_count != 0)
+  months_col <- df$month
   df$month <- as.factor(df$month)
   df <- one_hot(as.data.table(df))
+  df$month <- as.numeric(months_col)
+  df$meat_count2 <- (df$meat_count)^2
   return(df)
 }
 
 model_data <- prepare_data(data_df, pizza_contents)
 
 sample <- sample(c(TRUE, FALSE), nrow(model_data), replace=TRUE, prob=c(0.75,0.25))
-train  <- model_data[sample, ]
-test   <- model_data[!sample, ]
-#write.csv(test, 'test_data.csv')
-#write.csv(train, 'train_data.csv')
+model  <- model_data[sample, ]
+explore   <- model_data[!sample, ]
+write.csv(model, '../data/processed/model_data.csv')
+write.csv(explore, '../data/processed/explore_data.csv')
+model_data
 ```
 
 ## Imports
 ```{r reading in train and test, message= FALSE}
-train <- read_csv("./data/processed/train_data.csv")
-test<- read_csv("./data/processed/test_data.csv")
+model <- read_csv("../data/processed/model_data.csv")
+explore<- read_csv("../data/processed/explore_data.csv")
 ```
 
 ## Basic Model
 ```{r model1: any meat}
-model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = train)
+model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = explore)
 summary(model1)
 ```
 
 ## Advanced Model
 ```{r model2: number of meats}
-model2 <- lm(total_sales ~ meat_count + ingredeint_count + alt_sauce + alt_cheese + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = train)
+model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = explore)
 summary(model2)
 ```
 

@@ -27,6 +27,27 @@ library(mltools)
 library(data.table)
 ```
 
+
+```{r, echo = FALSE, message = FALSE, show_col_types = FALSE}
+
+# Load In Data
+model <- read_csv("../data/processed/model_data.csv")
+explore<- read_csv("../data/processed/explore_data.csv")
+
+# Basic Model
+model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
+summary(model1)
+
+# Advanced Model 
+model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
+summary(model2)
+
+intercept <- model2$coefficients[1]
+meat_count_coef <- model2$coefficients[1]
+meat_count2_coef <- model2$coefficients[1]
+x_points = c(0,.5,1,1.5,2,2.5,3,3.5,4,4.5,5)
+y_points = intercept + x_points*meat_count_coef + (x_points^2)*meat_count2_coef
+```
 # Introduction (1)
 
 Restaurants belong in a competitive industry where success is determined by a delicate balance of food quality, service, and financial judgement. To understand financial decisions restaurants need to carefully manage costs, employ strategic pricing strategies, and maximize sales. With technology continuing to grow and impact our everyday lives, it can be beneficial for non-data driven industries, such as restaurants, to involve data into their decision making. One possibility to do so is to leverage order data to enhance sale strategies and overall performance. By analyzing order histories, restaurants might be able to unravel valuable insights into customer preferences, ordering patterns, and popular menu items. Understanding customer behaviors through this data can allow restaurants to tailor their offerings, optimize menus, and strategically price items. For pizza restaurants, analyzing the correlation between pizza ingredients and sales can reveal valuable insights into customer preferences and optimize their offerings optimally. Understanding the impact of pricing alongside ingredient combinations can guide decisions on pricing strategies or seasonal promotions, ultimately boosting sales and customer satisfaction.
@@ -55,8 +76,9 @@ No covariates were intentionally excluded from the provided information. The tra
 # A Table or Visualization (5)
 
 ```{r, echo = FALSE, message = FALSE, show_col_types = FALSE}
-train <- read_csv("../data/processed/train_data.csv") 
-basic_boxplot <- ggplot(train, aes(x = reorder(is_vegetarian, desc(is_vegetarian)), y = total_sales)) +
+
+# Basic Model Boxplot
+basic_boxplot <- ggplot(explore, aes(x = reorder(is_vegetarian, desc(is_vegetarian)), y = total_sales)) +
   geom_boxplot(fill = "skyblue", alpha = 0.7) +
   labs(title = "Basic Model: Sales for Vegetarian vs Non-Vegetarian Pizzas",
        x = "Vegetarian Pizza",
@@ -71,7 +93,9 @@ The box plot analysis indicates that, on average, non-vegetarian pizzas tend to 
 
 
 ```{r, echo = FALSE, message = FALSE}
-scatterplot <- ggplot(train, aes(x = meat_count, y = total_sales, color = meat_count)) +
+
+# Unused Scatterplot
+scatterplot <- ggplot(explore, aes(x = meat_count, y = total_sales, color = meat_count)) +
   geom_point(size = 3, alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE, linetype = "solid", color = "blue") +
   labs(title = "Advanced Model: Sales by Number of Meats on Pizza",
@@ -85,14 +109,17 @@ In the scatterplot with the trendline, we observe a positive linear relationship
 The boxplot provides a summary of the distribution of Total Sales across different Meat Counts. The boxplot indicates that the median Total Sales increase with the Meat Count up to 2, where it reaches a peak. Beyond 2 meats, the median Total Sales start to decline. This pattern is consistent with the observation in the scatterplot.
 
 ```{r, echo = FALSE, message = FALSE}
-boxplot <- ggplot(train, aes(x = factor(meat_count), y = total_sales)) +
+
+# Advanced Model Boxplot
+boxplot <- ggplot(explore, aes(x = factor(meat_count), y = total_sales)) +
   geom_boxplot(fill = "skyblue", alpha = 0.7) +
-  geom_smooth(method = "lm", se = FALSE, linetype = "solid", color = "deepskyblue", aes(group=1)) +
+#  geom_smooth(method = "lm", se = FALSE, linetype = "solid", color = "deepskyblue", aes(group=1)) +
+#  geom_segment(aes(x_points, y_points)) +
   labs(title = "Advanced Model: Sales by Number of Meats on Pizza", x = "Number of Meats",
        y = "Total Sales") +
   theme_minimal() + theme(plot.margin=unit(c(.25,0,0,0), "cm")) +
   theme(plot.title = element_text(hjust = .5)) +
-  theme(plot.title = element_text(vjust = -1))
+  theme(plot.title = element_text(vjust = -1)) 
 
 grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
 ```
@@ -112,7 +139,7 @@ meat_columns <- c("meat_sliced_ham", "meat_pepperoni", "meat_bacon", "meat_calab
 
 
 # Calculate correlation between each meat column and sales
-correlations <- sapply(meat_columns, function(col) cor(train$total_sales, train[[col]]))
+correlations <- sapply(meat_columns, function(col) cor(explore$total_sales, explore[[col]]))
 
 # Create a data frame for plotting
 correlation_data <- data.frame(meat = meat_columns, correlation = correlations)
