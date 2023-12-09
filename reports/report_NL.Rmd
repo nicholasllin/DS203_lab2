@@ -9,9 +9,11 @@ output:
     toc_depth: 1  # upto three depths of headings (specified by #, ## and ###)
     number_sections: true
 ---
+
+```{=tex}
 \newpage
 \setcounter{page}{1}
-
+```
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -27,7 +29,6 @@ library(mltools)
 library(data.table)
 ```
 
-
 ```{r, echo = FALSE, message = FALSE, show_col_types = FALSE}
 
 # Load In Data
@@ -35,6 +36,7 @@ model <- read_csv("../data/processed/model_data.csv")
 explore<- read_csv("../data/processed/explore_data.csv")
 
 ```
+
 # Introduction (1)
 
 Restaurants belong in a competitive industry where success is determined by a delicate balance of food quality, service, and financial judgement. To understand financial decisions restaurants need to carefully manage costs, employ strategic pricing strategies, and maximize sales. With technology continuing to grow and impact our everyday lives, it can be beneficial for non-data driven industries, such as restaurants, to involve data into their decision making. One possibility to do so is to leverage order data to enhance sale strategies and overall performance. By analyzing order histories, restaurants might be able to unravel valuable insights into customer preferences, ordering patterns, and popular menu items. Understanding customer behaviors through this data can allow restaurants to tailor their offerings, optimize menus, and strategically price items. For pizza restaurants, analyzing the correlation between pizza ingredients and sales can reveal valuable insights into customer preferences and optimize their offerings optimally. Understanding the impact of pricing alongside ingredient combinations can guide decisions on pricing strategies or seasonal promotions, ultimately boosting sales and customer satisfaction.
@@ -43,7 +45,7 @@ The goal of this study is to estimate what types of ingredients can significantl
 
 # Data and Methodology (2-3)
 
-The data in this study is a data set made for Plato's Pizza, a fictitious pizza restaurant based in New Jersey. It was made publicly available by a group called Maven Analytics. It includes about a year's worth of 48620 pizza orders, where each row shows the details about the order such as date and time, number of pizzas, type of pizzas, size, quantity, price, and ingredients. 
+The data in this study is a data set made for Plato's Pizza, a fictitious pizza restaurant based in New Jersey. It was made publicly available by a group called Maven Analytics. It includes about a year's worth of 48620 pizza orders, where each row shows the details about the order such as date and time, number of pizzas, type of pizzas, size, quantity, price, and ingredients.
 
 To organize and operationalize sales for the data, individual pizza orders were aggregated into monthly sales per type of pizza. Then, pizza ingredients were split into their respective categories of meat, sauce, cheese, and vegetables. For each pizza, the categories of ingredients were then counted. To further account for time trends for the sales, one hot encoded months and a month variable were included in the models. After organizing the data, it was randomly split into 75% for exploration analysis and 25% of modeling building. The final exploration and model building data set had 102 and 283 data points respectively.
 
@@ -53,12 +55,12 @@ To organize and operationalize sales for the data, individual pizza orders were 
 
 No observations were intentionally removed from the dataset. The analysis was conducted on the complete dataset available for Plato's Pizza, and no observations were excluded due to missing values or other criteria.
 
-
 ## Variable Transformations:
 
 The dataset is aggregated at the 'pizza_name' and 'month' level without additional changes. These alterations to the data involves creating a summary dataset at a higher level of granularity, providing a monthly overview of key metrics for each pizza type.
 
 ## Intentional Covariate Exclusions:
+
 The only covariates that were removed was the month of January as the month were one hot encoded from month_01 to month_12. Otherwise, the transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alternative cheese (not mozzarella), alternative sauce (not red sauce), veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on ingredients in the pizza.
 
 # A Table or Visualization (5)
@@ -79,7 +81,6 @@ basic_boxplot <- ggplot(explore, aes(x = reorder(is_vegetarian, desc(is_vegetari
 
 The box plot analysis indicates that, on average, non-vegetarian pizzas tend to have higher Total Sales compared to vegetarian pizzas. While medians provide insights into the central tendency, the spread of the box plot and the presence of outliers suggest that the distribution of Total Sales is broader for non-vegetarian pizzas. This finding could guide further investigations into the factors influencing Total Sales for each category, helping restaurant owners make informed decisions about their pizza offerings.
 
-
 ```{r, echo = FALSE, message = FALSE}
 
 # Unused Scatterplot
@@ -92,6 +93,7 @@ scatterplot <- ggplot(explore, aes(x = meat_count, y = total_sales, color = meat
        color = "Number of Meats") +
   theme_minimal() + theme(legend.position = "none")
 ```
+
 In the scatterplot with the trendline, we observe a positive linear relationship between Meat Count and Total Sales. The blue regression line indicates a positive slope, suggesting that as the Meat Count increases, the Total Sales tend to increase. However, it's essential to note that the scatterplot points show some variability, and there might be other factors influencing the relationship especially around Meat Count of 2
 
 The boxplot provides a summary of the distribution of Total Sales across different Meat Counts. The boxplot indicates that the median Total Sales increase with the Meat Count up to 2, where it reaches a peak. Beyond 2 meats, the median Total Sales start to decline. This pattern is consistent with the observation in the scatterplot.
@@ -111,7 +113,6 @@ boxplot <- ggplot(explore, aes(x = factor(meat_count), y = total_sales)) +
 
 grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
 ```
-
 
 The scatterplot and boxplot together indicate that while there is a positive linear trend between Meat Count and Total Sales, the relationship is not strictly monotonic. The plateau and subsequent decline in median Total Sales beyond 2 meats suggest that there may be an optimal range of Meat Count for maximizing Total Sales. Further analysis and potential model refinement may be needed to capture the nuanced relationship between the predictors and Total Sales.
 
@@ -144,9 +145,10 @@ ggplot(correlation_data, aes(x = reorder(meat, -correlation), y = correlation)) 
 
 ```
 
-
 # Results (6-7)
+
 ## Basic Model: Vegetarian or not
+
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 
 model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
@@ -154,20 +156,27 @@ summary(model1)
 ```
 
 ## Advanced Model: Number of meats
+
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 
 model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
 summary(model2)
 ```
 
-
-
 # Discussion of Limitations (8)
 
-Concerns regarding the i.i.d assumption arise due to several factors. Primarily, there is a time series nature of grouping the total sales by month. Pizza sales of one month could influence by pizza sales of the next month due to factors like customer retention or word-of-mouth. **Talk about how we try to account for this??**. Secondly, there is the potential of geographic clustering as we do not have location data in this dataset. Geographical groupings could influence pizza sales by reflecting regional or local sales trends. Additionally, there is the possibility of repeat customers in the database. Repeat pulls may not represent a random sampling and could influence the results by skewing towards repeat customers' personal preferences. Finally, the dataset does not specify if promotions or discounts occurred during the sampling. Promotions can change the underlying sampling distribution since a heavier weight with will be applied towards whichever pizza is currently discounted.
+Concerns regarding the i.i.d assumption arise due to several factors.  Primarily, there is a time series nature of grouping the total sales by month.  Pizza sales of one month could influence pizza sales of the next month due to factors like customer retention or word-of-mouth.  We attempt to account for this by including control variables in the model.  Specifically, we hot-code the individual months to account for month-to-month variation, and add a month number variable to capture the time ordering component.
+
+Secondly, there is the potential of geographic clustering as we do not have location data in this dataset. Geographical groupings could influence pizza sales by reflecting regional or local sales trends. Additionally, there is the possibility of repeat customers in the database, which may not represent a random sampling and could skew the results towards repeat customers' personal preferences. Finally, the dataset does not specify if promotions or discounts occurred during the sampling. Promotions can change the underlying sampling distribution since a heavier weight with will be applied towards whichever pizza is currently discounted.
 
 Regarding structural limitations, the validity of our estimates on the impact of meat pizza sales may be biased by several omitted variables. An example of such a variable is religion. Many religions tend to restrict meat consumption, which will negatively correlate with the amount meat on pizzas. Additionally, religions tend to emphasize healthier diets and could have a negative correlation with total pizza sales. Therefore, we anticipate a positive omitted variable bias due to religion, which would result in a bias away from zero.
 
 Income level is another variable to consider. Affluent consumers may be able to afford the premium or meat-heavy pizzas, which results in a positive correlation with meat consumption. However, wealthier demographics tend to eat healthier foods, and thus overall pizza sales may decline, resulting in a negative correlation. Therefore, we predict a negative omitted variable bias, resulting in a bias towards zero, underestimating the impact of meat on pizza sales.
 
-One final example, which is challenging to pinpoint bias directionality for, is the impact of marketing. Effective marketing can be assumed to increase the sales of the marketed pizza, regardless of the meat content. We assume this will have a positive correlation with total pizza sales but could have a positive or negative correlation with meat consumption depending on whether meat or vegetarian pizzas were marketed. Therefore, this could lead to a positive or negative bias, depending on which marketing strategy that was employed.
+One final example - which is challenging to pinpoint bias directionality for - is the impact of marketing. Effective marketing can be assumed to increase the sales of the marketed pizza, regardless of the meat content. We assume this will have a positive correlation with total pizza sales but could have a positive or negative correlation with meat consumption depending on whether meat or vegetarian pizzas were marketed. Therefore, this could lead to a positive or negative bias, depending on which marketing strategy that was employed.
+
+# Conclusion (9)
+
+\*\*Placeholder for summary paragraph\*\*
+
+In future research, we would recommend collecting a more comprehensive dataset to investigate impact of meat on sale for broader topics like regional differences or pizza chain-level differences.  The intended goal of this work is to help restaurant owners and chef's curate to drive overall sales for their establishments.  Adding more depth to the analysis through those additional variables could enhance the impact of the work.
