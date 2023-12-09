@@ -59,8 +59,7 @@ No observations were intentionally removed from the dataset. The analysis was co
 The dataset is aggregated at the 'pizza_name' and 'month' level without additional changes. These alterations to the data involves creating a summary dataset at a higher level of granularity, providing a monthly overview of key metrics for each pizza type.
 
 ## Intentional Covariate Exclusions:
-
-No covariates were intentionally excluded from the provided information. The transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alternative cheese (not mozzarella), alternarive sauce (not red sauce), veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on ingredients in the pizza.
+The only covariates that were removed was the month of January as the month were one hot encoded from month_01 to month_12. Otherwise, the transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alternative cheese (not mozzarella), alternarive sauce (not red sauce), veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on ingredients in the pizza.
 
 # A Table or Visualization (5)
 
@@ -135,13 +134,14 @@ correlation_data <- data.frame(meat = meat_columns, correlation = correlations)
 correlation_data <- correlation_data[order(correlation_data$correlation, decreasing = TRUE), ]
 
 # Bar chart
-ggplot(correlation_data, aes(x = meat, y = correlation)) +
+ggplot(correlation_data, aes(x = reorder(meat, -correlation), y = correlation)) +
   geom_bar(stat = "identity", fill = "skyblue", color = "black") +
   labs(title = "Correlation between Meat Types and Sales",
        x = "Meat Types",
        y = "Correlation with Sales") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
 ```
 
 
