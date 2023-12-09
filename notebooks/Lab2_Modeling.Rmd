@@ -18,6 +18,7 @@ library(readxl)
 library(lubridate)
 library(mltools)
 library(data.table)
+library(stargazer)
 ```
 
 ```{r source data and label ingredients, echo = FALSE, message=FALSE}
@@ -184,21 +185,48 @@ model_data
 ```
 
 ## Imports
+
 ```{r reading in train and test, message= FALSE}
 model <- read_csv("../data/processed/model_data.csv")
 explore<- read_csv("../data/processed/explore_data.csv")
 ```
 
 ## Basic Model
+
 ```{r model1: any meat}
 model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = explore)
 summary(model1)
 ```
 
 ## Advanced Model
+
 ```{r model2: number of meats}
 model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = explore)
 summary(model2)
 ```
 
+## Stargazer Table
 
+```{r}
+models_list <- list(model1, model2)
+
+covariate_labels <- c("Vegetarian", "Meat Count", "Meat Count$^2$", "Ingredient Count", "Alternate Sauce", "Alternate Cheese", "Month of Year", "Intercept")
+
+omit <- c("month_02", "month_03", "month_04", "month_05", "month_06", "month_07", "month_08", "month_09", "month_10", "month_11", "month_12")
+
+
+stargazer(models_list, title = "Estimated Regressions",
+          align = TRUE,       
+          dep.var.caption = "Dependent Variable:",  
+          dep.var.labels.include = TRUE,           
+          covariate.labels = covariate_labels,  
+          dep.var.labels = "Total Sales ($)",  
+          omit = omit,
+          #add.lines = list(c("Hot Coded Month", "$\\checkmark$", "$\\checkmark$")),
+          add.lines = list(c("Month Control", "$\\checkmark$", "$\\checkmark$"), c("\\hline", "", "")),
+          omit.stat = c("f"),
+          #out = "regression_table.tex"  # Output the LaTeX code to a .tex file
+          #type = "text"
+          type = "latex"
+          )
+```
