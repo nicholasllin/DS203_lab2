@@ -45,7 +45,7 @@ The goal of this study is to estimate what types of ingredients can significantl
 
 The data in this study is a data set made for Plato's Pizza, a fictitious pizza restaurant based in New Jersey. It was made publicly available by a group called Maven Analytics. It includes about a year's worth of 48620 pizza orders, where each row shows the details about the order such as date and time, number of pizzas, type of pizzas, size, quantity, price, and ingredients. 
 
-To organize and operationalize sales for the data, individual pizza orders were aggregated into monthly sales per type of pizza. Then, pizza ingredients were split into their respective categories of meat, sauce, cheese, and vegetables. For each pizza, the categories of ingredients were then counted. After organizing the data, it was randomly split into 75% for exploration analysis and 25% of modeling building. The final exploration and model building data set had 110 and 275 data points respectively.
+To organize and operationalize sales for the data, individual pizza orders were aggregated into monthly sales per type of pizza. Then, pizza ingredients were split into their respective categories of meat, sauce, cheese, and vegetables. For each pizza, the categories of ingredients were then counted. To further account for time trends for the sales, one hot encoded months and a month variable were included in the models. After organizing the data, it was randomly split into 75% for exploration analysis and 25% of modeling building. The final exploration and model building data set had 102 and 283 data points respectively.
 
 # An Explanation of Key Modeling Decisions (4)
 
@@ -59,7 +59,7 @@ No observations were intentionally removed from the dataset. The analysis was co
 The dataset is aggregated at the 'pizza_name' and 'month' level without additional changes. These alterations to the data involves creating a summary dataset at a higher level of granularity, providing a monthly overview of key metrics for each pizza type.
 
 ## Intentional Covariate Exclusions:
-The only covariates that were removed was the month of January as the month were one hot encoded from month_01 to month_12. Otherwise, the transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alternative cheese (not mozzarella), alternarive sauce (not red sauce), veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on ingredients in the pizza.
+The only covariates that were removed was the month of January as the month were one hot encoded from month_01 to month_12. Otherwise, the transformed dataset includes relevant variables for the analysis, such as counts of ingredients, meat, alternative cheese (not mozzarella), alternative sauce (not red sauce), veggie, and binary indicators. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on ingredients in the pizza.
 
 # A Table or Visualization (5)
 
