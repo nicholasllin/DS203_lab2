@@ -1,5 +1,5 @@
 ---
-title: "Do Meat Toppings Effect Pizza Sales?"
+title: "Do Meat Toppings Affect Pizza Sales?"
 subtitle: "Datasci 203: Lab Report 2"
 author: "Blake Bleier, Reese Carlton, Nicholas Lin, & Peter Valverde" 
 output: 
@@ -152,7 +152,7 @@ ggplot(correlation_data, aes(x = reorder(meat, -correlation), y = correlation)) 
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 
 model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
-summary(model1)
+#summary(model1)
 ```
 
 ## Advanced Model: Number of meats
@@ -160,12 +160,23 @@ summary(model1)
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 
 model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
-summary(model2)
+#summary(model2)
 ```
+
+
+Table 1 provides a comprehensive summary of our basic and advanced regression models. Our basic model included a vegetarian indicator, ingredient count, and month information, while the advanced version included linear and quadratic terms for the number of meats on a pizza, as well as accounting for alternate sauces and alternate cheeses.  Across both models, the addition of meats had a highly statistically significant impact on total sales.  In the basic model, the vegetarian indicator coefficient was observed at -307, implying that for a hypothetical pizza with a fixed ingredient count, offering a non-meat option will lower the total sales by approximately \$307 per month compared to a pizza with meat. 
+
+For the advanced model, both the linear and quadratic meat count terms were highly significant, as well as the alternate cheese indicator.  The linear term for meat count has positive coefficient, while the squared term has a negative coefficient.  The interaction of these terms suggests that initially, adding more meats to a pizza increases sales, but after a certain number of meats, the incremental benefit decreases and eventually turns negative.  To frame this in an example, the marginal benefit of going from 0 meats on a pizza to 1 meat on a pizza is $\$401\cdot 1 - \$91 \cdot 1^2 = \$301$ increase in monthly sales.  However, transitioning from a pizza with 3 meats to a pizza with 4 meats, results in a marginal difference of $(\$401\cdot 4 - \$91 \cdot 4^2) - (\$401\cdot 3 - \$91 \cdot 3^2) = -\$236$ decrease in totals sales.  Based on the model, the optimal number of meats on a pizza is 2, as any increase beyond this number is associated with a negative impact on total sales.
+
+Additionally, the alternate cheese indicator coefficient was highly significant with a value of -\$326, indicating that pizzas with cheese other than mozzarella sell \$326 less per month than pizzas with mozzarella cheese.  Notably, the month of sale did not have any significant impact on total sales.  
+```{r my_image_chunk, fig.show='left', out.width='40%', fig.cap="", echo=FALSE}
+knitr::include_graphics("stargazer_image.png")
+```
+
 
 # Discussion of Limitations (8)
 
-Concerns regarding the i.i.d assumption arise due to several factors.  Primarily, there is a time series nature of grouping the total sales by month.  Pizza sales of one month could influence pizza sales of the next month due to factors like customer retention or word-of-mouth.  We attempt to account for this by including control variables in the model.  Specifically, we hot-code the individual months to account for month-to-month variation, and add a month number variable to capture the time ordering component.
+Concerns regarding the i.i.d assumption arise due to several factors. Primarily, there is a time series nature of grouping the total sales by month. Pizza sales of one month could influence pizza sales of the next month due to factors like customer retention or word-of-mouth. We attempt to account for this by including control variables in the model. Specifically, we hot-code the individual months to account for month-to-month variation, and add a month number variable to capture the time ordering component.
 
 Secondly, there is the potential of geographic clustering as we do not have location data in this dataset. Geographical groupings could influence pizza sales by reflecting regional or local sales trends. Additionally, there is the possibility of repeat customers in the database, which may not represent a random sampling and could skew the results towards repeat customers' personal preferences. Finally, the dataset does not specify if promotions or discounts occurred during the sampling. Promotions can change the underlying sampling distribution since a heavier weight with will be applied towards whichever pizza is currently discounted.
 
@@ -177,6 +188,6 @@ One final example - which is challenging to pinpoint bias directionality for - i
 
 # Conclusion (9)
 
-\*\*Placeholder for summary paragraph\*\*
+This study evaluated the impact of meat on total pizza sales.  The regression models predict that pizzas with meat will increase sales by \$307 per month, and that the optimal number of meats on a pizza is 2.  Beyond that value, pizza sales will begin to diminish. Additionally, swapping out alternate cheese for mozzarella cheese will reduce sales by approximately \$326 per month.
 
 In future research, we would recommend collecting a more comprehensive dataset to investigate impact of meat on sale for broader topics like regional differences or pizza chain-level differences.  The intended goal of this work is to help restaurant owners and chef's curate to drive overall sales for their establishments.  Adding more depth to the analysis through those additional variables could enhance the impact of the work.
