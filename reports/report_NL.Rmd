@@ -170,9 +170,9 @@ For the intermediate model, both the linear and quadratic meat count terms were 
 
 In the advanced model, given that a statistical test was performed on each individual meat, the p-value threshold was decreased to \$p\<0.05/18 \$ or $p<0.003$ for statistical significance. Given this new threshold value, there were 6 meats associated with an increase in total sales (sliced ham, bacon, chicken, beef chuck roast, capocollo, and prosciutto di salami), and 3 meats associated with a decrease in total sales (Italian sausage, prosciutto, and duja salami). Additionally, alternate sauce now shows a highly significant and large negative impact. This suggests that when you control for *which* meat is on the pizza, changing the sauce is associated with a -\$688 decrease in total sales. These changes to the model resulted in a drastic increase in predictive power, increasing from an adjusted R-squared value of 0.09 to 0.67.
 
-\begin{wrapfigure}{l}{0.4\textwidth}
+\begin{wrapfigure}{l}{0.6\textwidth}
   \centering
-  \includegraphics[width=0.38\textwidth]{stargazer_image.png} % Adjust width as needed
+  \includegraphics[width=0.58\textwidth]{stargazer_image.png} % Adjust width as needed
 \end{wrapfigure}
 
 
