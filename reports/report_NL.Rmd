@@ -68,6 +68,11 @@ After creating the data as described above, we began our exploratory data analys
 
 The only covariates that were removed was the month of January as the months were one hot encoded from month_01 to month_12. Otherwise, the transformed dataset includes relevant variables for the analysis, such as counts and indicators of ingredient categories: meat, alternative cheese, alternative sauce, vegetable, and a squared term. The inclusion of these variables aligns with the research question and allows for a comprehensive analysis of pizza sales based on the number of meats accounting for potential covariates where possible.
 
+\begin{wrapfigure}{l}{0.6\textwidth}
+  \centering
+  \includegraphics[width=0.58\textwidth]{pizza_box_plot.png} % Adjust width as needed
+\end{wrapfigure}
+
 # A Table or Visualization
 
 ```{r, echo = FALSE, message = FALSE, show_col_types = FALSE}
@@ -83,10 +88,6 @@ basic_boxplot <- ggplot(explore, aes(x = reorder(is_vegetarian, desc(is_vegetari
   theme(plot.title = element_text(vjust = -1)) +
   theme(axis.title.x = element_text(vjust = 5.5))
 ```
-\begin{wrapfigure}{l}{0.7\textwidth}
-  \centering
-  \includegraphics[width=0.68\textwidth]{pizza_box_plot.png} % Adjust width as needed
-\end{wrapfigure}
 
 
 The box plot analysis in the top in Figure 1 indicates that, on average, non-vegetarian pizzas tend to have higher Total Sales compared to vegetarian pizzas. While medians provide insights into the central tendency, the spread of the box plot and the presence of outliers suggest that the distribution of Total Sales is broader for non-vegetarian pizzas. This finding could guide further investigations into the factors influencing Total Sales for each category, helping restaurant owners make informed decisions about their pizza offerings.
@@ -106,6 +107,7 @@ scatterplot <- ggplot(explore, aes(x = meat_count, y = total_sales, color = meat
 
 The boxplot in the lower half of Figure 1 provides a summary of the distribution of Total Sales across different Meat Counts. The boxplot indicates that the median Total Sales increase with the Meat Count up to 2, where it reaches a peak. Beyond 2 meats, the median Total Sales start to decline. While there is a positive linear trend between Meat Count and Total Sales, the relationship is clearly non-monotonic. This plateau and subsequent decline in median Total Sales beyond 2 meats suggest that there may be an optimal range of Meat Count for maximizing Total Sales and led to an inclusion of a Meat Count squared variable in our model regression.
 
+
 ```{r test_fig, echo = FALSE, message = FALSE,  fig.cap = "Box plots of aggregated pizza sales for the basic and advanced models", fig.pos = 'H'}
 
 # Advanced Model Boxplot
@@ -119,10 +121,10 @@ boxplot <- ggplot(explore, aes(x = factor(meat_count), y = total_sales)) +
   theme(plot.title = element_text(hjust = .5)) +
   theme(plot.title = element_text(vjust = -1)) 
 
-grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
+#grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
 ```
 
-```{r, message = FALSE, echo = FALSE, warning = FALSE, fig.cap="Summary of correlation value between specific meat type and total sales in decending order",}
+```{r, message = FALSE, echo = FALSE, warning = FALSE, fig.cap="Summary of correlation value between specific meat type and total sales in decending order",eval=FALSE}
 meat_columns <- c("meat_sliced_ham", "meat_pepperoni", "meat_bacon", "meat_calabrese_salami", 
                   "meat_barbecued_chicken", "meat_italian_sausage", "meat_chorizo_sausage", 
                   "meat_prosciutto", "meat_慛duja_salami", "meat_pancetta", "meat_chicken", 
@@ -151,17 +153,14 @@ ggplot(correlation_data, aes(x = reorder(meat, -correlation), y = correlation)) 
 
 ```
 
-# Results
 
-## Basic Model: Vegetarian or not
+# Results
 
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 
 model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
 #summary(model1)
 ```
-
-## Advanced Model: Number of meats
 
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 
@@ -171,14 +170,14 @@ model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sau
 
 Table 1 provides a comprehensive summary of our basic, intermediate, and advanced regression models. Our basic model included a vegetarian indicator, ingredient count, and month information, while the advanced version included linear and quadratic terms for the number of meats on a pizza, as well as accounting for alternate sauces and alternate cheeses. The advanced model included each individual meat as an indicator variable (18 total meats). Across all models, the addition of meats had a highly statistically significant impact on total sales. In the basic model, the vegetarian indicator coefficient was observed at -307, implying that for a hypothetical pizza with a fixed ingredient count, offering a non-meat option will lower the total sales by approximately \$307 per month compared to a pizza with meat.
 
+\begin{wrapfigure}{r}{0.6\textwidth}
+  \centering
+  \includegraphics[width=0.58\textwidth]{pizza_correlation_plot.png} % Adjust width as needed
+\end{wrapfigure}
+
 For the intermediate model, both the linear and quadratic meat count terms were highly significant, as well as the alternate cheese indicator. The linear term for meat count has positive coefficient, while the squared term has a negative coefficient. The interaction of these terms suggests that initially, adding more meats to a pizza increases sales, but after a certain number of meats, the incremental benefit decreases and eventually turns negative. To frame this in an example, the marginal benefit of going from 0 meats on a pizza to 1 meat on a pizza is $\$401\cdot 1 - \$91 \cdot 1^2 = \$301$ increase in monthly sales. However, transitioning from a pizza with 3 meats to a pizza with 4 meats, results in a marginal difference of $(\$401\cdot 4 - \$91 \cdot 4^2) - (\$401\cdot 3 - \$91 \cdot 3^2) = -\$236$ decrease in totals sales. Based on the model, the optimal number of meats on a pizza is 2, as any increase beyond this number is associated with a negative impact on total sales. Additionally, the alternate cheese indicator coefficient was highly significant with a value of -\$326, indicating that pizzas with cheese other than mozzarella sell \$326 less per month than pizzas with mozzarella cheese. Notably, the month of sale did not have any significant impact on total sales.
 
 In the advanced model, given that a statistical test was performed on each individual meat, the p-value threshold was decreased to \$p\<0.05/18 \$ or $p<0.003$ for statistical significance. Given this new threshold value, there were 6 meats associated with an increase in total sales (sliced ham, bacon, chicken, beef chuck roast, capocollo, and prosciutto di salami), and 3 meats associated with a decrease in total sales (Italian sausage, prosciutto, and duja salami). Additionally, alternate sauce now shows a highly significant and large negative impact. This suggests that when you control for *which* meat is on the pizza, changing the sauce is associated with a -\$688 decrease in total sales. These changes to the model resulted in a drastic increase in predictive power, increasing from an adjusted R-squared value of 0.09 to 0.67.
-
-\begin{wrapfigure}{l}{0.6\textwidth}
-  \centering
-  \includegraphics[width=0.58\textwidth]{stargazer_image.png} % Adjust width as needed
-\end{wrapfigure}
 
 
 ```{r, fig.show='left', out.width='40%', fig.cap="", echo=FALSE, eval=FALSE}
@@ -192,6 +191,11 @@ Concerns regarding the i.i.d assumption arise due to several factors. Primarily,
 Secondly, there is the potential of geographic clustering as we do not have location data in this dataset. Geographical groupings could influence pizza sales by reflecting regional or local sales trends. Additionally, there is the possibility of repeat customers in the database, which may not represent a random sampling and could skew the results towards repeat customers' personal preferences. Finally, the dataset does not specify if promotions or discounts occurred during the sampling. Promotions can change the underlying sampling distribution since a heavier weight with will be applied towards whichever pizza is currently discounted.
 
 Regarding structural limitations, the validity of our estimates on the impact of meat pizza sales may be biased by several omitted variables. An example of such a variable is religion. Many religions tend to restrict meat consumption, which will negatively correlate with the amount meat on pizzas. Additionally, religions tend to emphasize healthier diets and could have a negative correlation with total pizza sales. Therefore, we anticipate a positive omitted variable bias due to religion, which would result in a bias away from zero.
+
+\begin{wrapfigure}{l}{0.6\textwidth}
+  \centering
+  \includegraphics[width=0.58\textwidth]{stargazer_image.png} % Adjust width as needed
+\end{wrapfigure}
 
 Income level is another variable to consider. Affluent consumers may be able to afford the premium or meat-heavy pizzas, which results in a positive correlation with meat consumption. However, wealthier demographics tend to eat healthier foods, and thus overall pizza sales may decline, resulting in a negative correlation. Therefore, we predict a negative omitted variable bias, resulting in a bias towards zero, underestimating the impact of meat on pizza sales.
 
