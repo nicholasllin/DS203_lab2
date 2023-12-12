@@ -83,6 +83,11 @@ basic_boxplot <- ggplot(explore, aes(x = reorder(is_vegetarian, desc(is_vegetari
   theme(plot.title = element_text(vjust = -1)) +
   theme(axis.title.x = element_text(vjust = 5.5))
 ```
+\begin{wrapfigure}{l}{0.7\textwidth}
+  \centering
+  \includegraphics[width=0.68\textwidth]{pizza_box_plot.png} % Adjust width as needed
+\end{wrapfigure}
+
 
 The box plot analysis in the top in Figure 1 indicates that, on average, non-vegetarian pizzas tend to have higher Total Sales compared to vegetarian pizzas. While medians provide insights into the central tendency, the spread of the box plot and the presence of outliers suggest that the distribution of Total Sales is broader for non-vegetarian pizzas. This finding could guide further investigations into the factors influencing Total Sales for each category, helping restaurant owners make informed decisions about their pizza offerings.
 
