@@ -54,19 +54,16 @@ To organize and operationalize sales for the data, individual pizza orders were 
 
 To account for time series nature of the data (month over month sales), we decided to both one hot encode an indicator for each month and include an integer representation of month (1-12) for our regression models. These variables allow for the model to account for both individually more or less popular months as well as general trends in popularity (sales) throughout the year. After organizing the data in this manner, we then used a random probability sampling method to split the data into either an exploratory data set (with 25% probability) for exploratory data analysis and feature engineering and a modeling data set (with 75% probability) used for our regression analysis. In our final data sets, each data point represents a single type of pizza in a particular month and its associated sales and ingredient information. The final exploration and model building data sets had 102 and 283 data points respectively.
 
-# An Explanation of Key Modeling Decisions
-
-## Observations Removed:
-
 No observations were intentionally removed from the dataset. The analysis was able to be conducted on the complete dataset available for Plato's Pizza, and no observations were excluded due to missing values or other criteria.
-
-## Variable Transformations:
 
 After creating the data as described above, we began our exploratory data analysis on the exploratory split of the data set. This yielded a number of additional findings for feature engineering. Lead by our EDA, we created indicators for whether or not a pizza is vegetarian, contains any alternative cheese (not just mozzarella), or contains an alternative sauce (not just red sauce). We also observed that the relationship between number of meats on a pizza and sales appeared non-linear and thus we elected to include a squared term on number of meats in order to capture the apparent curvature in the relationship.
 
-## Intentional Covariate Exclusions:
-
 The only covariates that were removed was the month of January as the months were one hot encoded from month_01 to month_12.
+
+\begin{wrapfigure}{l}{0.6\textwidth}
+  \centering
+  \includegraphics[width=0.58\textwidth]{pizza_box_plot.png} % Adjust width as needed
+\end{wrapfigure}
 
 # A Table or Visualization
 
@@ -111,11 +108,11 @@ boxplot <- ggplot(explore, aes(x = factor(meat_count), y = total_sales)) +
   theme(plot.title = element_text(hjust = .5)) +
   theme(plot.title = element_text(vjust = -1)) 
 
-grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
+#grid.arrange(basic_boxplot, boxplot, nrow=2,heights=c(2,2))
 ```
 
 
-```{r, message = FALSE, echo = FALSE, warning = FALSE, fig.cap="Summary of correlation value between specific meat type and total sales in decending order"}
+```{r, message = FALSE, echo = FALSE, warning = FALSE, fig.cap="Summary of correlation value between specific meat type and total sales in decending order", eval=FALSE}
 meat_columns <- c("meat_sliced_ham", "meat_pepperoni", "meat_bacon", "meat_calabrese_salami", 
                   "meat_barbecued_chicken", "meat_italian_sausage", "meat_chorizo_sausage", 
                   "meat_prosciutto", "meat_慛duja_salami", "meat_pancetta", "meat_chicken", 
@@ -161,6 +158,11 @@ model1 <- lm(total_sales ~ is_vegetarian + ingredeint_count + month + month_02 +
 model2 <- lm(total_sales ~ meat_count + meat_count2 + ingredeint_count + alt_sauce + alt_cheese + month + month_02 + month_03 + month_04 + month_05 + month_06 + month_07 + month_08 + month_09 + month_10 + month_11 + month_12, data = model)
 #summary(model2)
 ```
+
+\begin{wrapfigure}{r}{0.6\textwidth}
+  \centering
+  \includegraphics[width=0.58\textwidth]{pizza_correlation_plot.png} % Adjust width as needed
+\end{wrapfigure}
 
 Table 1 provides a comprehensive summary of our basic, intermediate, and advanced regression models. Our basic model included a vegetarian indicator, ingredient count, and month information, while the advanced version included linear and quadratic terms for the number of meats on a pizza, as well as accounting for alternate sauces and alternate cheeses. The advanced model included each individual meat as an indicator variable (18 total meats). Across all models, the addition of meats had a highly statistically significant impact on total sales. In the basic model, the vegetarian indicator coefficient was observed at -307 (±101), implying that for a hypothetical pizza with a fixed ingredient count, offering a non-meat option will lower the total sales by approximately \$307 (±\$101) per month compared to a pizza with meat.
 
